@@ -1,0 +1,261 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load helper %}
+
+{% block body %}
+
+<main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title light-background">
+        <div class="container">
+            <nav class="breadcrumbs">
+                <ol>
+                    <li><a href="{% url 'mainapp:index' %}">{% trans 'Home' %}</a></li>
+                    <li class="current">{% trans 'Cart' %}</li>
+                </ol>
+            </nav>
+            <h1>{% trans 'Cart' %}</h1>
+        </div>
+    </div><!-- End Page Title -->
+
+    <!-- Cart Section -->
+    <section id="cart" class="cart section">
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="row">
+                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+                    <div class="cart-items">
+                        <div class="cart-header d-none d-lg-block">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6">
+                                    <h5>{% trans 'Product' %}</h5>
+                                </div>
+                                <div class="col-lg-2 text-center">
+                                    <h5>{% trans 'Price' %}</h5>
+                                </div>
+                                <div class="col-lg-2 text-center">
+                                    <h5>{% trans 'Quantity' %}</h5>
+                                </div>
+                                <div class="col-lg-2 text-center">
+                                    <h5>{% trans 'Total' %}</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% for basket_item in basket.basketitem_set.all %}
+                        <!-- Cart Item -->
+                        <div class="cart-item" id="basket-cart-{{ basket_item.id }}">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 col-12 mt-3 mt-lg-0 mb-lg-0 mb-3">
+                                    <div class="product-info d-flex align-items-center">
+                                        <div class="product-image">
+                                            <img src="{{ basket_item.product.first_product_image }}"
+                                                 alt="{{ basket_item.product.name }}" class="img-fluid"
+                                                 loading="lazy">
+                                        </div>
+                                        <div class="product-details">
+                                            <h6 class="product-title">{{ basket_item.product.name }}</h6>
+                                            <button class="remove-item" type="button"
+                                                    onclick="removeProduct('{{ basket_item.product.id }}')">
+                                                <i class="bi bi-trash"></i> {% trans 'Remove' %}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-12 mt-3 mt-lg-0 text-center">
+                                    <div class="price-tag">
+                                        <span class="current-price">
+                                            {{ basket_item.product.total_price|stringformat:".2f" }} {% trans '$' %}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-12 mt-3 mt-lg-0 text-center">
+                                    <div class="quantity-selector">
+                                        <button class="quantity-btn decrease" onclick="deleteProduct('{{ basket_item.product.id }}')">
+                                            <i class="bi bi-dash"></i>
+                                        </button>
+                                        <input type="number" class="quantity-input" id="qty-{{ basket_item.id }}"
+                                               value="{{ basket_item.quantity }}" min="1">
+                                        <button class="quantity-btn increase" onclick="addProduct('{{ basket_item.product.id }}')">
+                                            <i class="bi bi-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-12 mt-3 mt-lg-0 text-center">
+                                    <div class="item-total">
+                                        <span>
+                                            <span id="price-{{ basket_item.id }}">{{ basket_item.total_price|stringformat:".2f" }}</span> {% trans '$' %}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- End Cart Item -->
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
+                    <div class="cart-summary">
+                        <h4 class="summary-title">{% trans 'Order Summary' %}</h4>
+
+                        <div class="summary-total">
+                            <span class="summary-label">{% trans 'Total' %}</span>
+                            <span class="summary-value">
+                                <span id="total-price">{{ basket.total_price|stringformat:".2f" }}</span> {% trans '$' %}
+                            </span>
+                        </div>
+
+                        <div class="checkout-button">
+                            <a href="{% url 'orders:create' %}" class="btn btn-accent w-100">
+                                {% trans 'Proceed to Checkout' %} <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+
+                        <div class="continue-shopping">
+                            <a href="{% url 'mainapp:index' %}" class="btn btn-link w-100">
+                                <i class="bi bi-arrow-left"></i> {% trans 'Continue Shopping' %}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section><!-- /Cart Section -->
+
+</main>
+
+{% endblock %}
+
+{% block footer %}
+<script>
+
+    const add_url = "{% url 'baskets:create' %}";
+    const delete_url = "{% url 'baskets:delete' %}";
+    const remove_url = "{% url 'baskets:remove' %}";
+
+    // helper function to get CSRF token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+            const cookies = document.cookie.split(";");
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.startsWith(name + "=")) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    function removeProduct(productId){
+        fetch(remove_url, {   // change 'create_basket' to your URL name
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": getCookie("csrftoken")  // Django CSRF protection
+            },
+            body: JSON.stringify({ product_id: productId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+
+            if (data.success) {
+                let totalPriceEl = document.getElementById("total-price");
+                if (totalPriceEl) {
+                    totalPriceEl.textContent = parseFloat(data.total_price).toFixed(2);
+                }
+            } else {
+                alert("Something went wrong.");
+            }
+
+        })
+        .catch(error => console.error("Error:", error));
+    }
+
+    function deleteProduct(productId){
+        fetch(delete_url, {   // change 'create_basket' to your URL name
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": getCookie("csrftoken")  // Django CSRF protection
+            },
+            body: JSON.stringify({ product_id: productId, quantity: 1 })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+
+                if(data.quantity == 0){
+                    console.log("test");
+                    let basket_cart = document.getElementById("basket-cart-" + data.basket_item);
+                    if (basket_cart) {
+                        console.log("hello");
+                        basket_cart.remove();
+                    }
+                }
+
+
+                // Update the total price
+                let totalPriceEl = document.getElementById("total-price");
+                if (totalPriceEl) {
+                    totalPriceEl.textContent = parseFloat(data.total_price).toFixed(2);
+                }
+
+                let productPriceEl = document.getElementById("price-" + data.basket_item);
+                if (productPriceEl) {
+                    productPriceEl.textContent = parseFloat(data.product_total_price).toFixed(2);
+                }
+
+                let qtyEl = document.getElementById("qty-" + data.basket_item);
+                if (qtyEl) {
+                    qtyEl.value = data.quantity
+                }
+            } else {
+                alert("Something went wrong.");
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    }
+
+    function addProduct(productId){
+        fetch(add_url, {   // change 'create_basket' to your URL name
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": getCookie("csrftoken")  // Django CSRF protection
+            },
+            body: JSON.stringify({ product_id: productId, quantity: 1 })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Update the total price
+                let totalPriceEl = document.getElementById("total-price");
+                if (totalPriceEl) {
+                    totalPriceEl.textContent = parseFloat(data.total_price).toFixed(2);
+                }
+
+                let productPriceEl = document.getElementById("price-" + data.basket_item);
+                if (productPriceEl) {
+                    productPriceEl.textContent = parseFloat(data.product_total_price).toFixed(2);
+                }
+
+                let qtyEl = document.getElementById("qty-" + data.basket_item);
+                if (qtyEl) {
+                    qtyEl.value = data.quantity
+                }
+            } else {
+                alert("Something went wrong.");
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    }
+</script>
+{% endblock %}

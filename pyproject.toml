@@ -1,0 +1,25 @@
+[project]
+name = "sidra-web"
+version = "0.1.0"
+description = "Web service for sidra"
+authors = ["fuadhuseynov <fhuseynov803@gmail.com>"]
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+    "django==4.2",
+    "django-ckeditor>=6.7.3",
+    "django-cleanup==6.0.0",
+    "django-cors-headers==4.0.0",
+    "django-environ==0.10.0",
+    "django-modeltranslation>=0.19.16",
+    "django-mptt>=0.17.0",
+    "django-phonenumber-field==7.3.0",
+    "drf-standardized-errors==0.14.0",
+    "phonenumberslite==8.13.35",
+    "pillow>=11.3.0",
+    "psycopg2-binary>=2.9.10",
+    "python-gettext>=5.0",
+    "ruff>=0.12.7",
+    "typing-extensions>=4.8.0",
+]

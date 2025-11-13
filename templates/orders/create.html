@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load helper %}
+
+{% block body %}
+
+<main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title light-background">
+        <div class="container">
+            <nav class="breadcrumbs">
+                <ol>
+                    <li><a href="{% url 'mainapp:index' %}">{% trans 'Home' %}</a></li>
+                    <li class="current">{% trans 'Checkout' %}</li>
+                </ol>
+            </nav>
+            <h1>{% trans 'Checkout' %}</h1>
+        </div>
+    </div><!-- End Page Title -->
+
+    <!-- Checkout Section -->
+    <section id="checkout" class="checkout section">
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="row">
+                <div class="col-lg-8">
+
+                    <!-- Checkout Forms Container -->
+                    <div class="checkout-forms" data-aos="fade-up" data-aos-delay="150">
+                        <!-- Step 1: Customer Information -->
+                        <div class="checkout-form active" data-form="1">
+                            <div class="form-header">
+                                <h3>{% trans 'Customer Information' %}</h3>
+                            </div>
+                            <form class="checkout-form-element" method="POST">
+                                {% csrf_token %}
+
+                                <!-- Non-field errors -->
+                                {% if form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    {% for error in form.non_field_errors %}
+                                    <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+
+                                <!-- All form errors (field + non-field) -->
+                                {% if form.errors %}
+                                <div class="alert alert-danger">
+                                    <ul class="mb-0">
+                                        {% for field, errors in form.errors.items %}
+                                        {% for error in errors %}
+                                        {% if field != "__all__" %}
+                                        <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                                        {% else %}
+                                        <li>{{ error }}</li>
+                                        {% endif %}
+                                        {% endfor %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% endif %}
+
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <label for="name">{% trans 'First Name' %}</label>
+                                        <input type="text" name="name" class="form-control" id="name"
+                                               placeholder="{% trans 'Your First Name' %}" required="">
+                                    </div>
+                                    <div class="col-md-6 form-group mt-3 mt-md-0">
+                                        <label for="surname">{% trans 'Last Name' %}</label>
+                                        <input type="text" name="surname" class="form-control" id="surname"
+                                               placeholder="{% trans 'Your Last Name' %}" required="">
+                                    </div>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label for="email">{% trans 'Email Address' %}</label>
+                                    <input type="email" class="form-control" name="email" id="email"
+                                           placeholder="{% trans 'Your Email' %}" required="">
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label for="phone">{% trans 'Phone Number' %}</label>
+                                    <input type="tel" class="form-control" name="phone" id="phone"
+                                           placeholder="{% trans 'Your Phone Number' %}" required="">
+                                </div>
+                                {% if basket.total_price > 50 or LANGUAGE_CODE == "tr" %}
+                                <div class="form-group mt-3">
+                                    <input type="checkbox" id="is_delivery" name="is_delivery">
+                                    <label for="is_delivery">{% trans "Çatdırıma varmı?" %}</label>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label for="address">{% trans "Address" %}</label>
+                                    <input type="text" id="address" name="address"
+                                           placeholder="{% trans 'Your address' %}" class="form-control" disabled>
+                                </div>
+                                {% endif %}
+
+                                <div class="form-group mt-3">
+                                    <label for="pay_choice">{% trans 'Payment Choice' %}</label><br>
+                                    <input type="radio" name="pay_choice" value="cod"> <label>{% trans 'Cash on Delivery' %}</label><br>
+                                    {% if LANGUAGE_CODE == "az" %}
+                                    <input type="radio" name="pay_choice" value="pasha">
+                                    <label>{% trans 'Pay online' %}</label>
+                                    {% elif LANGUAGE_CODE == "tr" %}
+                                    <input type="radio" name="pay_choice" value="akbank">
+                                    <label>{% trans 'Pay online' %}</label>
+                                    {% endif %}
+                                </div>
+
+                                {% if LANGUAGE_CODE == "tr" %}
+                                <div class="text mt-3">
+                                    <p>Belirtilen konuma göre kargo ücreti ayrıdır!</p>
+                                </div>
+                                {% endif %}
+
+                                <div class="text-end mt-4">
+                                    <button type="submit" class="btn btn-primary next-step" data-next="2">
+                                        {% trans 'Checkout' %}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <!-- Order Summary -->
+                    <div class="order-summary" data-aos="fade-left" data-aos-delay="200">
+                        <div class="order-summary-header">
+                            <h3>{% trans 'Order Summary' %}</h3>
+                            <button type="button" class="btn-toggle-summary d-lg-none">
+                                <i class="bi bi-chevron-down"></i>
+                            </button>
+                        </div>
+
+                        <div class="order-summary-content">
+                            <div class="order-items">
+
+                                {% for basket_item in basket.basketitem_set.all %}
+                                <div class="order-item">
+                                    <div class="order-item-image">
+                                        <img src="{{ basket_item.product.first_product_image }}" alt="Product"
+                                             class="img-fluid">
+                                    </div>
+                                    <div class="order-item-details">
+                                        <h4>{{ basket_item.product.name }}</h4>
+                                        <div class="order-item-price">
+                                            <span class="quantity">{{ basket_item.quantity }} ×</span>
+                                            <span class="price">{{ basket_item.product.total_price|stringformat:".2f" }} {% trans '$' %}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="order-totals">
+                                <div class="order-total d-flex justify-content-between">
+                                    <span>{% trans 'Total' %}</span>
+                                    <span>{{ basket.total_price|stringformat:".2f" }} {% trans '$' %}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section><!-- /Checkout Section -->
+
+</main>
+{% endblock %}
+
+{% block footer %}
+
+<script>
+    document.getElementById("is_delivery").addEventListener("change", function () {
+      const addressInput = document.getElementById("address");
+      addressInput.disabled = !this.checked;
+    });
+</script>
+
+{% endblock %}

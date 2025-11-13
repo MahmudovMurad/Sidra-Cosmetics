@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+{% load static %}
+{% load i18n %}
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Index - FashionStore Bootstrap Template</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!-- Favicons -->
+    <link href="/staticfiles/assets/logo.png" rel="icon">
+    <link href="/staticfiles/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Quicksand:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/staticfiles/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/staticfiles/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/staticfiles/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/staticfiles/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/staticfiles/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/staticfiles/assets/vendor/drift-zoom/drift-basic.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="/staticfiles/assets/css/main.css" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: FashionStore
+    * Template URL: https://bootstrapmade.com/fashion-store-bootstrap-template/
+    * Updated: Apr 26 2025 with Bootstrap v5.3.5
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body>
+
+<header id="header" class="header position-relative">
+    <!-- Top Bar -->
+    <div class="top-bar py-2 d-none d-lg-block">
+        <div class="container-fluid container-xl">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="d-flex align-items-center">
+                        <div class="top-bar-item me-4">
+
+                        </div>
+                        <div class="top-bar-item">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="d-flex justify-content-end">
+                        <div class="top-bar-item me-4">
+
+                        </div>
+
+                        <div class="top-bar-item dropdown me-4">
+                            {{ LANGUAGE_CODE }}
+                            {% if LANGUAGE_CODE == 'az' %}
+                            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                <i class="bi bi-translate me-2"></i>Azərbaycanca
+                            </a>
+                            {% elif LANGUAGE_CODE == 'tr' %}
+                            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                <i class="bi bi-translate me-2"></i>Türkce
+                            </a>
+                            {% endif %}
+
+                            <ul class="dropdown-menu">
+
+                                {% for lang in LANGUAGES %}
+                                    {% if lang.0 == 'az' %}
+                                        <li><a class="dropdown-item"
+                                               href="/{{ lang.0 }}/{{ request.get_full_path|slice:'4:' }}">
+                                            {% if LANGUAGE_CODE == 'az' %}<i class="bi bi-check2 me-2 selected-icon"></i>{% endif %} Azərbaycanca</a></li>
+                                    {% endif %}
+                                    {% if lang.0 == 'tr' %}
+                                        <li><a class="dropdown-item"
+                                               href="/{{ lang.0 }}/{{ request.get_full_path|slice:'4:' }}">
+                                            {% if LANGUAGE_CODE == 'tr' %}<i class="bi bi-check2 me-2 selected-icon"></i>{% endif %} Türkce</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <div class="main-header">
+        <div class="container-fluid container-xl">
+            <div class="d-flex py-3 align-items-center justify-content-between">
+
+                <!-- Logo -->
+                <a href="{% url 'mainapp:index' %}" class="logo d-flex align-items-center">
+                    <!-- Uncomment the line below if you also wish to use an image logo -->
+                    <!-- <img src="/staticfiles/assets/img/logo.webp" alt=""> -->
+                    <h1 class="sitename">Sidra</h1>
+                </a>
+
+                <!-- Search -->
+                <form class="search-form desktop-search-form" action="{% url 'products:list' %}">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="{% trans 'Search for products...' %}" name="search">
+                        <button class="btn search-btn" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Actions -->
+                <div class="header-actions d-flex align-items-center justify-content-end">
+
+                    <!-- Mobile Search Toggle -->
+                    <button class="header-action-btn mobile-search-toggle d-xl-none" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#mobileSearch" aria-expanded="false"
+                            aria-controls="mobileSearch">
+                        <i class="bi bi-search"></i>
+                    </button>
+
+                    <!-- Cart -->
+                    <div class="dropdown cart-dropdown">
+                        <a class="header-action-btn" href="{% url 'baskets:list' %}">
+                            <i class="bi bi-cart3"></i>
+                            <span class="action-text d-none d-md-inline-block">{% trans 'Cart' %}</span>
+                            <span class="badge">{{ cart_count }}</span>
+                        </a>
+                    </div>
+
+                    <!-- Mobile Navigation Toggle -->
+                    <i class="mobile-nav-toggle d-xl-none bi bi-list me-0"></i>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="header-nav">
+        <div class="container-fluid container-xl position-relative">
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="{% url 'mainapp:index' %}" class="active">{% trans 'Home' %}</a></li>
+                    <li><a href="#">{% trans 'About' %}</a></li>
+                    <li><a href="{% url 'products:list' %}">{% trans 'Products' %}</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar py-2">
+        <div class="container-fluid container-xl">
+            <div class="announcement-slider swiper init-swiper">
+                <script type="application/json" class="swiper-config">
+                    {
+                        "loop": true,
+                        "speed": 600,
+                        "autoplay": {
+                            "delay": 5000
+                        },
+                        "slidesPerView": 1,
+                        "effect": "slide",
+                        "direction": "vertical"
+                    }
+                </script>
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">🚚 Free shipping on orders over $50</div>
+                    <div class="swiper-slide">💰 30 days money back guarantee</div>
+                    <div class="swiper-slide">🎁 20% off on your first order - Use code: FIRST20</div>
+                    <div class="swiper-slide">⚡ Flash Sale! Up to 70% off on selected items</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Search Form -->
+    <div class="collapse" id="mobileSearch">
+        <div class="container">
+            <form class="search-form" action="{% url 'products:list' %}">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="{% trans 'Search for products...' %}" name="search">
+                    <button class="btn search-btn" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</header>
+
+{% block body %}
+{% endblock %}
+
+<footer id="footer" class="footer light-background">
+    <div class="footer-main">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6">
+                    {% if settings %}
+                    <div class="footer-widget footer-about">
+                        <a href="{% url 'mainapp:index' %}" class="logo">
+                            <span class="sitename">Sidra</span>
+                        </a>
+                        <p>{{ settings.short_description }}</p>
+
+                        <div class="social-links mt-4">
+                            <h5>{% trans 'Connect With Us' %}</h5>
+                            <div class="social-icons">
+                                <a href="{{ settings.facebook }}" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                                <a href="{{ settings.instagram }}" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                                <a href="{{ settings.tiktok }}" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                </div>
+
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    {% if settings %}
+                    <div class="footer-widget">
+                        <h4>{% trans 'Contact Information' %}</h4>
+                        <div class="footer-contact">
+                            <div class="contact-item">
+                                <i class="bi bi-geo-alt"></i>
+                                <span>{{ settings.address }}</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="bi bi-telephone"></i>
+                                <span>{{ settings.phone }}</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="bi bi-envelope"></i>
+                                <span>{{ settings.email }}</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="bi bi-clock"></i>
+                                {{ settings.working_hours|safe }}
+                            </div>
+                        </div>
+
+
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+
+<!-- Preloader -->
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="/staticfiles/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/staticfiles/assets/vendor/php-email-form/validate.js"></script>
+<script src="/staticfiles/assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="/staticfiles/assets/vendor/aos/aos.js"></script>
+<script src="/staticfiles/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="/staticfiles/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="/staticfiles/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="/staticfiles/assets/vendor/drift-zoom/Drift.min.js"></script>
+<script src="/staticfiles/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+
+<!-- Main JS File -->
+<script src="/staticfiles/assets/js/main.js"></script>
+
+{% block footer %}
+{% endblock %}
+
+
+</body>

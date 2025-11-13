@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load helper %}
+
+{% block body %}
+
+<main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title light-background">
+        <div class="container">
+            <nav class="breadcrumbs">
+                <ol>
+                    <li><a href="{% url 'mainapp:index' %}">{% trans 'Home' %}</a></li>
+                    <li class="current">{{ product.name }}</li>
+                </ol>
+            </nav>
+            <h1>{{ product.name }}</h1>
+        </div>
+    </div><!-- End Page Title -->
+
+    <!-- Product Details Section -->
+    <section id="product-details" class="product-details section">
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="row g-5">
+                <!-- Product Images Column -->
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right" data-aos-delay="200">
+                    <div class="product-gallery">
+                        <!-- Vertical Thumbnails -->
+                        <div class="thumbnails-vertical">
+                            <div class="thumbnails-container">
+                                {% for product_image in product.productimage_set.all %}
+                                <div class="thumbnail-item active"
+                                     data-image="{{ product_image.image.url }}">
+                                    <img src="{{ product_image.image.url }}" alt="Product Thumbnail"
+                                         class="img-fluid">
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- Main Image -->
+                        <div class="main-image-wrapper">
+                            <div class="image-zoom-container">
+                                <a href="assets/img/product/product-details-1.webp" class="glightbox"
+                                   data-gallery="product-gallery">
+                                    <img src="{{ product.first_product_image }}" alt="Product Image"
+                                         class="img-fluid main-image drift-zoom" id="main-product-image"
+                                         data-zoom="{{ product.first_product_image }}">
+                                    <div class="zoom-overlay">
+                                        <i class="bi bi-zoom-in"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="image-nav">
+                                <button class="image-nav-btn prev-image">
+                                    <i class="bi bi-chevron-left"></i>
+                                </button>
+                                <button class="image-nav-btn next-image">
+                                    <i class="bi bi-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Info Column -->
+                <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+                    <div class="product-info-wrapper" id="product-info-sticky">
+                        <!-- Product Meta -->
+                        <div class="product-meta">
+
+                            <h1 class="product-title">{{ product.name }}</h1>
+                        </div>
+
+                        <!-- Product Price -->
+                        <div class="product-price-container">
+                            <div class="price-wrapper">
+                                <span class="current-price">{{ product.final_price|stringformat:".2f" }} {% trans '$' %}</span>
+                                {% if product.discount %}<span class="original-price">{{ product.price|stringformat:".2f" }} {% trans '$' %}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Product Description -->
+                        <div class="product-short-description">
+                            {{ product.description|safe }}
+                        </div>
+
+
+                        <!-- Product Options -->
+                        <div class="product-options">
+
+                            <!-- Quantity Selector -->
+                            <div class="option-group">
+                                <h6 class="option-title">{% trans 'Quantity' %}</h6>
+                                <div class="quantity-selector">
+                                    <button class="quantity-btn decrease">
+                                        <i class="bi bi-dash"></i>
+                                    </button>
+                                    <input type="number" id="productQty" class="quantity-input" value="1" min="1">
+                                    <button class="quantity-btn increase">
+                                        <i class="bi bi-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="product-actions">
+                            <button class="btn btn-primary add-to-cart-btn" onclick="addCart('{{ product.id }}')">
+                                <i class="bi bi-cart-plus"></i> {% trans 'Add to Cart' %}
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </section><!-- /Product Details Section -->
+
+</main>
+
+{% endblock %}
+
+{% block footer %}
+
+<script>
+     const add_cart_url = "{% url 'baskets:create' %}";
+
+function addCart(productId) {
+console.log(productId);
+let qtyInput = document.getElementById("productQty");
+let quantity = qtyInput ? parseInt(qtyInput.value) || 1 : 1;  // fallback to 1
+
+    fetch(add_cart_url, {   // change 'create_basket' to your URL name
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCookie("csrftoken")  // Django CSRF protection
+        },
+        body: JSON.stringify({ product_id: productId, quantity: quantity})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Product added to basket!");
+        } else {
+            alert("Something went wrong.");
+        }
+    })
+    .catch(error => console.error("Error:", error));
+}
+
+// helper function to get CSRF token
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== "") {
+        const cookies = document.cookie.split(";");
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith(name + "=")) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const qtyInput = document.getElementById("productQty");
+    const increaseBtn = document.querySelector(".quantity-btn.increase");
+    const decreaseBtn = document.querySelector(".quantity-btn.decrease");
+
+    // Increase quantity
+    increaseBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        qtyInput.value = parseInt(qtyInput.value) + 1;
+    });
+
+    // Decrease quantity (min = 1)
+    decreaseBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        let currentValue = parseInt(qtyInput.value);
+        if (currentValue > 1) {
+            qtyInput.value = currentValue - 1;
+        }
+    });
+});
+</script>
+{% endblock %}

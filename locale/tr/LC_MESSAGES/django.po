@@ -1,0 +1,244 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-13 14:19+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: apps/orders/choices.py:8
+msgid "Akbank"
+msgstr "Akbank"
+
+#: apps/orders/choices.py:9
+msgid "Pasha"
+msgstr "Paşa"
+
+#: apps/orders/choices.py:10 templates/orders/create.html:102
+msgid "Cash on Delivery"
+msgstr "Kapıda Ödeme"
+
+#: config/settings/base.py:138
+msgid "Azerbaijani"
+msgstr "Azerbaycan"
+
+#: config/settings/base.py:139
+msgid "Turkish"
+msgstr "Türkçe"
+
+#: templates/base.html:123 templates/base.html:201
+#: templates/products/list.html:119
+msgid "Search for products..."
+msgstr "Ürünlerde ara..."
+
+#: templates/base.html:144 templates/baskets/list.html:15
+#: templates/baskets/list.html:18
+msgid "Cart"
+msgstr "Sepet"
+
+#: templates/base.html:162 templates/baskets/list.html:14
+#: templates/orders/create.html:14 templates/products/detail.html:14
+#: templates/products/list.html:14
+msgid "Home"
+msgstr "Ana Sayfa"
+
+#: templates/base.html:163
+msgid "About"
+msgstr "Hakkında"
+
+#: templates/base.html:164 templates/products/list.html:15
+#: templates/products/list.html:18
+msgid "Products"
+msgstr "Ürünler"
+
+#: templates/base.html:228
+msgid "Connect With Us"
+msgstr "Bizimle İletişime Geçin"
+
+#: templates/base.html:248
+msgid "Contact Information"
+msgstr "İletişim Bilgileri"
+
+#: templates/baskets/list.html:33
+msgid "Product"
+msgstr "Ürün"
+
+#: templates/baskets/list.html:36
+msgid "Price"
+msgstr "Fiyat"
+
+#: templates/baskets/list.html:39 templates/products/detail.html:98
+msgid "Quantity"
+msgstr "Adet"
+
+#: templates/baskets/list.html:42 templates/baskets/list.html:104
+#: templates/orders/create.html:160
+msgid "Total"
+msgstr "Toplam"
+
+#: templates/baskets/list.html:62
+msgid "Remove"
+msgstr "Kaldır"
+
+#: templates/baskets/list.html:70 templates/baskets/list.html:89
+#: templates/baskets/list.html:106 templates/mainapp/index.html:48
+#: templates/mainapp/index.html:50 templates/mainapp/index.html:103
+#: templates/orders/create.html:151 templates/orders/create.html:161
+#: templates/products/detail.html:81 templates/products/detail.html:82
+#: templates/products/list.html:73 templates/products/list.html:81
+#: templates/products/list.html:178
+msgid "$"
+msgstr "₺"
+
+#: templates/baskets/list.html:101 templates/orders/create.html:132
+msgid "Order Summary"
+msgstr "Sipariş Özeti"
+
+#: templates/baskets/list.html:112
+msgid "Proceed to Checkout"
+msgstr "Ödeme Yap"
+
+#: templates/baskets/list.html:118
+msgid "Continue Shopping"
+msgstr "Alışverişe Devam Et"
+
+#: templates/mainapp/index.html:42 templates/mainapp/index.html:93
+#: templates/products/detail.html:114 templates/products/list.html:168
+msgid "Add to Cart"
+msgstr "Sepete Ekle"
+
+#: templates/mainapp/index.html:62
+msgid "View All Products"
+msgstr "Tüm Ürünleri Gör"
+
+#: templates/mainapp/index.html:74
+msgid "Best Sellers"
+msgstr "En Çok Satanlar"
+
+#: templates/orders/create.html:15 templates/orders/create.html:18
+#: templates/orders/create.html:120
+msgid "Checkout"
+msgstr "Ödeme"
+
+#: templates/orders/create.html:35
+msgid "Customer Information"
+msgstr "Müşteri Bilgileri"
+
+#: templates/orders/create.html:68
+msgid "First Name"
+msgstr "Ad"
+
+#: templates/orders/create.html:70
+msgid "Your First Name"
+msgstr "Adınızı girin"
+
+#: templates/orders/create.html:73
+msgid "Last Name"
+msgstr "Soyad"
+
+#: templates/orders/create.html:75
+msgid "Your Last Name"
+msgstr "Soyadınızı girin"
+
+#: templates/orders/create.html:79
+msgid "Email Address"
+msgstr "E-posta Adresi"
+
+#: templates/orders/create.html:81
+msgid "Your Email"
+msgstr "E-postanızı girin"
+
+#: templates/orders/create.html:84
+msgid "Phone Number"
+msgstr "Telefon Numarası"
+
+#: templates/orders/create.html:86
+msgid "Your Phone Number"
+msgstr "Telefon numaranızı girin"
+
+#: templates/orders/create.html:91
+msgid "Çatdırıma varmı?"
+msgstr "Teslimat var mı?"
+
+#: templates/orders/create.html:94
+#, fuzzy
+#| msgid "Email Address"
+msgid "Address"
+msgstr "E-posta Adresi"
+
+#: templates/orders/create.html:96
+msgid "Your address"
+msgstr "Adresiniz"
+
+#: templates/orders/create.html:101
+msgid "Payment Choice"
+msgstr "Ödeme Seçimi"
+
+#: templates/orders/create.html:105 templates/orders/create.html:108
+msgid "Pay online"
+msgstr "Çevrimiçi ödeme"
+
+#: templates/products/list.html:32
+msgid "Categories"
+msgstr "Kategoriler"
+
+#: templates/products/list.html:49
+msgid "Price Range"
+msgstr "Fiyat Aralığı"
+
+#: templates/products/list.html:91
+msgid "Apply Filter"
+msgstr "Filtreyi Uygula"
+
+#: templates/products/list.html:115
+msgid "Search Products"
+msgstr "Ürünlerde Ara"
+
+#: templates/products/list.html:132
+msgid "Sort By"
+msgstr "Sırala"
+
+#: templates/products/list.html:134
+msgid "Featured"
+msgstr "Öne Çıkanlar"
+
+#: templates/products/list.html:135
+msgid "Price: Low to High"
+msgstr "Fiyat: Düşükten Yükseğe"
+
+#: templates/products/list.html:136
+msgid "Price: High to Low"
+msgstr "Fiyat: Yüksekten Düşüğe"
+
+#: templates/products/list.html:203
+msgid "Previous page"
+msgstr "Önceki Sayfa"
+
+#: templates/products/list.html:205
+msgid "Previous"
+msgstr "Önceki"
+
+#: templates/products/list.html:229
+msgid "Next page"
+msgstr "Sonraki Sayfa"
+
+#: templates/products/list.html:230
+msgid "Next"
+msgstr "Sonraki"
+
+#, fuzzy
+#~| msgid "Continue Shopping"
+#~ msgid "Continue"
+#~ msgstr "Alışverişe Devam Et"

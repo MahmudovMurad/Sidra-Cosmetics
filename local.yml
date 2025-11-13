@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+  sidra-web:
+    build:
+      context: .
+      dockerfile: ./docker/local/django/Dockerfile
+    container_name: sidra-web
+    command: /start.sh
+    volumes:
+      - .:/usr/src/app:z
+      - ./staticfiles:/usr/src/app/staticfiles
+      - ./mediafiles:/usr/src/app/mediafiles
+    ports:
+      - "1000:8000"
+    env_file:
+      - ./.envs/.local/.django
+      - ./.envs/.local/.postgres
+    depends_on:
+      - postgres-sidra
+
+
+  postgres-sidra:
+    container_name: postgres-sidra
+    image: postgres:15-bullseye
+    ports:
+      - 5532:5432
+    volumes:
+      - pgdb:/var/lib/postgresql/data
+    env_file:
+      - ./.envs/.local/.postgres
+
+
+  nginx:
+     restart: always
+     depends_on:
+       - sidra-web
+     volumes:
+       - ./staticfiles:/usr/src/app/staticfiles
+       - ./mediafiles:/usr/src/app/mediafiles
+     build:
+       context: ./docker/local/nginx
+       dockerfile: Dockerfile
+     ports:
+       - "10:80"
+
+
+
+
+volumes:
+  staticfiles:
+  mediafiles:
+  pgdb:
