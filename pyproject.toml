@@ -16,6 +16,7 @@ dependencies = [
     "django-mptt>=0.17.0",
     "django-phonenumber-field==7.3.0",
     "drf-standardized-errors==0.14.0",
+    "gunicorn>=23.0.0",
     "phonenumberslite==8.13.35",
     "pillow>=11.3.0",
     "psycopg2-binary>=2.9.10",

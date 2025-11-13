@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  sidra-web:
+    build:
+      context: .
+      dockerfile: ./docker/production/django/Dockerfile
+    container_name: sidra-web
+    command: /start.sh
+    volumes:
+      - ./staticfiles:/code/sidra/staticfiles
+      - ./mediafiles:/code/sidra/mediafiles
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.envs/.production/.django
+      - ./.envs/.production/.postgres
+
+
+  nginx:
+     restart: always
+     depends_on:
+       - sidra-web
+     volumes:
+       - ./staticfiles:/code/sidra/staticfiles
+       - ./mediafiles:/code/sidra/mediafiles
+     build:
+       context: ./docker/production/nginx
+       dockerfile: Dockerfile
+     ports:
+       - "80:80"
+
+
+
+
+volumes:
+  staticfiles:
+  mediafiles:
