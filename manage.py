@@ -7,7 +7,7 @@ import sys
 def main():
     """Run administrative tasks."""
     # TODO: change 'local' to 'production' while deploy on server
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
