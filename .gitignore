@@ -11,7 +11,8 @@ dump.rdb
 .idea
 .coverage*
 .DS_Store
-#staticfiles
+staticfiles
+!staticfiles/assets
 mediafiles
 #.envs/*
 #!.envs/.local/
