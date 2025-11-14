@@ -18,7 +18,7 @@ def order_create_view(request):
 
     if request.method == "POST":
         form = OrderForm(request.POST or None)
-        if form.is_valid():
+        if form.is_valid() and basket.basketitem_set.count() > 0:
             obj = form.save()
 
             if obj.pay_choice == "cod":
