@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-14 09:45+0400\n"
+"POT-Creation-Date: 2025-11-14 10:14+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,7 +38,7 @@ msgstr "Azərbaycanca"
 msgid "Turkish"
 msgstr "Türkçə"
 
-#: templates/base.html:120 templates/base.html:198
+#: templates/base.html:120 templates/base.html:195
 #: templates/products/list.html:119
 msgid "Search for products..."
 msgstr "Məhsul axtarın ..."
@@ -63,11 +63,15 @@ msgstr "Haqqımızda"
 msgid "Products"
 msgstr "Məhsullar"
 
-#: templates/base.html:225
+#: templates/base.html:184
+msgid "🚚 Free shipping on orders over $50"
+msgstr "50 azn və üzəri alış-verişdə çatdırılma pulsuzdur"
+
+#: templates/base.html:222
 msgid "Connect With Us"
 msgstr "Bizimlə Əlaqə"
 
-#: templates/base.html:245
+#: templates/base.html:242
 msgid "Contact Information"
 msgstr "Əlaqə Məlumatı"
 
