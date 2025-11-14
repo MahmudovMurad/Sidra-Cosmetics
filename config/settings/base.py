@@ -35,6 +35,7 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
+    "jazzmin",
     "modeltranslation",
     "django.contrib.admin",
 ]
