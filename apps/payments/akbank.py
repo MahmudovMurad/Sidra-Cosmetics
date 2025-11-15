@@ -57,7 +57,7 @@ class Akbank:
         debug_on = 1
 
         hash_str = required + self.merchant_salt
-        paytr_token = base64.b64encode(hmac.new(self.merchant_key, hash_str.encode(), hashlib.sha256).digest())
+        paytr_token = base64.b64encode(hmac.new(self.merchant_key.encode("utf-8"), hash_str.encode(), hashlib.sha256).digest())
 
         params = {
             'merchant_id': self.merchant_id,
