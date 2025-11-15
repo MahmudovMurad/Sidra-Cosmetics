@@ -1,7 +1,7 @@
 from django.db import models
 from apps.utils.models.mixins import TrackedModelMixin
 from phonenumber_field.modelfields import PhoneNumberField
-from apps.orders.choices import PaymentChoice
+from apps.orders.choices import PaymentChoice, CurrencyChoice, StatusChoice
 
 # Create your models here.
 
@@ -12,6 +12,10 @@ class Order(TrackedModelMixin):
     surname = models.CharField(max_length=300)
     email = models.EmailField()
     phone = models.CharField(max_length=300)
+
+    currency = models.CharField(max_length=300, choices=CurrencyChoice.choices, default="azn")
+    transaction = models.CharField(max_length=300, blank=True, null=True)
+    status = models.CharField(max_length=300, choices=StatusChoice.choices, default="in_progress")
 
     is_delivery = models.BooleanField(default=False)
     address = models.TextField(blank=True, null=True)
@@ -27,6 +31,10 @@ class Order(TrackedModelMixin):
     class Meta:
         verbose_name_plural = "Orders"
 
+    @property
+    def total_price(self):
+        return sum([order_item.total_price for order_item in self.orderitem_set.all()])
+
 
 class OrderItem(TrackedModelMixin):
     order = models.ForeignKey("orders.Order", on_delete=models.CASCADE)
@@ -39,3 +47,7 @@ class OrderItem(TrackedModelMixin):
 
     class Meta:
         verbose_name_plural = "Order Items"
+
+    @property
+    def total_price(self):
+        return self.price * self.quantity

@@ -298,15 +298,12 @@ CACHES = {
 }
 
 
-# KAPITAL: dict[str, Any] = {
-#     "BACKEND": "apps.payments.utils.Kapital",
-#     "OPTIONS": {
-#         "username": env.str("KAPITAL_USERNAME"),
-#         "password": env.str("KAPITAL_PASSWORD"),
-#         "base_url": env(
-#             "KAPITAL_BASE_URL",
-#             default="https://e-commerce.kapitalbank.az/api",
-#         ),
-#         "redirect_url": "https://api2.play10.az/api/payments/callback"
-#     },
-# }
+# AKBANK Configuration
+AKBANK: dict[str, Any] = {
+    "BACKEND": "apps.payments.akbank.Akbank",
+    "OPTIONS": {
+        "merchant_id": env.str("AKBANK_MERCHANT_ID"),
+        "merchant_key": env.str("AKBANK_MERCHANT_KEY"),
+        "merchant_salt": env.str("AKBANK_MERCHANT_SALT")
+    },
+}
