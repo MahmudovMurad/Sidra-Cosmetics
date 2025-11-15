@@ -27,7 +27,7 @@ class Akbank:
         name = f"Order transaction={str(transaction_uuid)}"
 
         # 14.45 TL için 14.45 * 100 = 1445 (100 ile çarpılmış ve integer olarak gönderilmelidir.)
-        price = order.total_price * 100
+        price = str(order.total_price * 100)
 
         # TL - USD - EUR - GBP gönderilebilir.
         currency = "TL"
