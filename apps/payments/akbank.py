@@ -47,7 +47,7 @@ class Akbank:
         # QR kod oluşturabilmeniz için PNG formatında Base64 kodu döner.
         get_qr = 0
 
-        min_count = 1
+        min_count = "1"
         email = ""
 
         required = name + price + currency + max_installment + link_type + lang + min_count
