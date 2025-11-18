@@ -31,7 +31,7 @@ def product_list_view(request):
         query_params=request.GET
     )
 
-    p = Paginator(filtered_products, 1)
+    p = Paginator(filtered_products, 10)
     page = request.GET.get("page", 1)
     queryset = p.page(page)
 
