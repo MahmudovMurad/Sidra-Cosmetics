@@ -1,6 +1,6 @@
 from modeltranslation.translator import TranslationOptions, register
 
-from .models import Settings
+from .models import Settings, About
 
 
 @register(Settings)
@@ -15,3 +15,8 @@ class SettingsTranslationOptions(TranslationOptions):
         "facebook",
         "tiktok"
     )
+
+
+@register(About)
+class AboutTranslationOptions(TranslationOptions):
+    fields = ("description", )

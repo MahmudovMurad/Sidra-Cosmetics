@@ -38,3 +38,30 @@ class Settings(TrackedModelMixin):
             return obj
         except:
             return None
+
+
+
+class About(TrackedModelMixin):
+    description = RichTextField()
+
+    def __str__(self):
+        return "About Us"
+
+    class Meta:
+        verbose_name_plural = "About Us"
+
+    def save(self, *args, **kwargs):
+        """Ensure only one instance exists."""
+        if not self.pk and About.objects.exists():
+            # If trying to create a new instance and one exists, raise error
+            raise Exception("You can only have one About instance.")
+        super().save(*args, **kwargs)
+
+    @classmethod
+    def get_solo(cls):
+        """Get the single Settings instance, or create it if it doesn't exist."""
+        try:
+            obj = cls.objects.get()
+            return obj
+        except:
+            return None

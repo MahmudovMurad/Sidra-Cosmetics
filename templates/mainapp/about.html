@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block body %}
+
+<main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title light-background">
+        <div class="container">
+            <nav class="breadcrumbs">
+                <ol>
+                    <li><a href="{% url 'mainapp:index' %}">{% trans 'Home' %}</a></li>
+                    <li class="current">{% trans 'About' %}</li>
+                </ol>
+            </nav>
+            <h1>{% trans 'About' %}</h1>
+        </div>
+    </div><!-- End Page Title -->
+
+    <!-- About 2 Section -->
+    <section id="about-2" class="about-2 section">
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="row mb-lg-5">
+                <span class="text-uppercase small-title mb-2">{% trans 'About' %}</span>
+
+            </div>
+
+            <div class="row g-4">
+
+                {{ about.description|safe }}
+
+            </div>
+
+        </div>
+
+    </section><!-- /About 2 Section -->
+
+</main>
+
+{% endblock %}

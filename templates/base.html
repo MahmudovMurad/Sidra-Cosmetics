@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Index - FashionStore Bootstrap Template</title>
+    <title>Sidra</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
 
@@ -31,14 +31,6 @@
 
     <!-- Main CSS File -->
     <link href="/staticfiles/assets/css/main.css" rel="stylesheet">
-
-    <!-- =======================================================
-    * Template Name: FashionStore
-    * Template URL: https://bootstrapmade.com/fashion-store-bootstrap-template/
-    * Updated: Apr 26 2025 with Bootstrap v5.3.5
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 
     {% block head %}
     {% endblock %}
@@ -157,7 +149,7 @@
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a href="{% url 'mainapp:index' %}" class="active">{% trans 'Home' %}</a></li>
-                    <li><a href="#">{% trans 'About' %}</a></li>
+                    <li><a href="{% url 'mainapp:about' %}">{% trans 'About' %}</a></li>
                     <li><a href="{% url 'products:list' %}">{% trans 'Products' %}</a></li>
                 </ul>
             </nav>

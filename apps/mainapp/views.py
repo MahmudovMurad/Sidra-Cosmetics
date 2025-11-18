@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from apps.products.models import Category, Product
+from apps.mainapp.models import About
 from django.db.models import Value, F, DecimalField
 from django.db.models.functions import Coalesce
 from django.utils import translation
@@ -28,3 +29,9 @@ def index_view(request):
         "best_sellers": products.filter(is_best_seller=True)
     }
     return render(request, "mainapp/index.html", context)
+
+
+def about_view(request):
+    about = About.get_solo()
+    context = {"about": about}
+    return render(request, "mainapp/about.html", context)
