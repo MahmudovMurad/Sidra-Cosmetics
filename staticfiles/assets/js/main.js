@@ -465,8 +465,8 @@
 
       // Helper function to update price displays
       function updateDisplays() {
-        minPriceDisplay.textContent = `$${minValue}`;
-        maxPriceDisplay.textContent = `$${maxValue}`;
+        minPriceDisplay.textContent = `${minValue}`;
+        maxPriceDisplay.textContent = `${maxValue}`;
       }
     });
   }

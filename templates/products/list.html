@@ -51,8 +51,8 @@
                         <div class="price-range-container">
                             <form method="get" action="?{% if search_param %}{{ search_param }}{% endif %}&page={{ products.number }}">
                                 <div class="current-range mb-3">
-                                    <span class="min-price">0</span>
-                                    <span class="max-price float-end">1000</span>
+                                    <span><span class="min-price">0</span> {% trans '$' %}</span>
+                                    <span class="float-end"><span class="max-price">1000</span> {% trans '$' %}</span>
                                 </div>
 
                                 <div class="range-slider">
