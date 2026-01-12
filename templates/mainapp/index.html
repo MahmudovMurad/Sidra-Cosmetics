@@ -64,16 +64,15 @@
     </section><!-- /Product List Section -->
 
     <!-- Best Sellers Section -->
-    <section id="best-sellers" class="best-sellers section">
+    <section id="best-sellers" class="best-sellers product-list section">
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
             <h2>{% trans 'Best Sellers' %}</h2>
         </div><!-- End Section Title -->
 
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-            <div class="row g-4">
+        <div class="container isotope-layout" data-aos="fade-up" data-aos-delay="100" data-default-filter="*"
+             data-layout="masonry" data-sort="original-order">
 
 
                 <div class="row product-container isotope-container" data-aos="fade-up" data-aos-delay="200">
@@ -103,8 +102,6 @@
                                 </div>
                             </div><!-- End Product Item -->
                     {% endfor %}
-
-            </div>
 
             </div>
 
