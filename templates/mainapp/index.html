@@ -27,11 +27,10 @@
 
             <div class="row product-container isotope-container" data-aos="fade-up" data-aos-delay="200">
 
-                {% for category in categories %}
+
                     {% for product in products %}
-                        {% if product.category == category %}
                             <!-- Product Item 1 -->
-                            <div class="col-md-6 col-lg-3 product-item isotope-item filter-category-{{ category.id }}">
+                            <div class="col-md-6 col-lg-3 product-item isotope-item filter-category-{{ product.category.id }}">
                                 <div class="product-card">
                                     <div class="product-image">
                                         <img src="{{ product.first_product_image }}" alt="{{ product.name }}"
@@ -52,9 +51,7 @@
                                     </div>
                                 </div>
                             </div><!-- End Product Item -->
-                        {% endif %}
                     {% endfor %}
-                {% endfor %}
 
             </div>
 
@@ -78,30 +75,36 @@
 
             <div class="row g-4">
 
-                {% for product in best_sellers %}
-                <!-- Product 1 -->
-                    <div class="col-md-6 col-lg-3 product-item isotope-item filter-category-{{ category.id }}">
-                        <div class="product-card">
-                            <div class="product-image">
-                                <img src="{{ product.first_product_image }}" alt="{{ product.name }}"
-                                     class="img-fluid main-img">
-                                <img src="{{ product.second_product_image }}" alt="{{ product.name }}"
-                                     class="img-fluid hover-img">
-                                <div class="product-overlay">
-                                    <a onclick="addCart('{{ product.id }}')" class="btn-cart"><i class="bi bi-cart-plus"></i> {% trans 'Add to Cart' %}</a>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <h5 class="product-title"><a href="{% url 'products:detail' product.id %}">{{ product.name }}</a></h5>
-                                <div class="product-price">
-                                    <span class="current-price">{{ product.final_price|stringformat:".2f" }} {% trans '$' %}</span>
 
-                                    {% if product.discount %}<span class="old-price">{{ product.price|stringformat:".2f" }} {% trans '$' %}</span>{% endif %}
+                <div class="row product-container isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+
+                    {% for product in best_sellers %}
+                            <!-- Product Item 1 -->
+                            <div class="col-md-6 col-lg-3 product-item isotope-item filter-category-{{ product.category.id }}">
+                                <div class="product-card">
+                                    <div class="product-image">
+                                        <img src="{{ product.first_product_image }}" alt="{{ product.name }}"
+                                             class="img-fluid main-img">
+                                        <img src="{{ product.second_product_image }}" alt="{{ product.name }}"
+                                             class="img-fluid hover-img">
+                                        <div class="product-overlay">
+                                            <a onclick="addCart('{{ product.id }}')" class="btn-cart"><i class="bi bi-cart-plus"></i> {% trans 'Add to Cart' %}</a>
+                                        </div>
+                                    </div>
+                                    <div class="product-info">
+                                        <h5 class="product-title"><a href="{% url 'products:detail' product.id %}">{{ product.name }}</a></h5>
+                                        <div class="product-price">
+                                            <span class="current-price">{{ product.final_price|stringformat:".2f" }} {% trans '$' %}</span>
+
+                                            {% if product.discount %}<span class="old-price">{{ product.price|stringformat:".2f" }} {% trans '$' %}</span>{% endif %}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div><!-- End Product Item -->
-                {% endfor %}
+                            </div><!-- End Product Item -->
+                    {% endfor %}
+
+            </div>
 
             </div>
 
