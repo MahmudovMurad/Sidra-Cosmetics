@@ -63,13 +63,13 @@
                         <div class="top-bar-item dropdown me-4">
                             {{ LANGUAGE_CODE }}
                             {% if LANGUAGE_CODE == 'az' %}
-                            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                                <i class="bi bi-translate me-2"></i>Azərbaycanca
-                            </a>
+                                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                    <i class="bi bi-translate me-2"></i>Azərbaycanca
+                                </a>
                             {% elif LANGUAGE_CODE == 'tr' %}
-                            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                                <i class="bi bi-translate me-2"></i>Türkce
-                            </a>
+                                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                    <i class="bi bi-translate me-2"></i>Türkce
+                                </a>
                             {% endif %}
 
                             <ul class="dropdown-menu">
@@ -78,12 +78,16 @@
                                     {% if lang.0 == 'az' %}
                                         <li><a class="dropdown-item"
                                                href="/{{ lang.0 }}/{{ request.get_full_path|slice:'4:' }}">
-                                            {% if LANGUAGE_CODE == 'az' %}<i class="bi bi-check2 me-2 selected-icon"></i>{% endif %} Azərbaycanca</a></li>
+                                            {% if LANGUAGE_CODE == 'az' %}
+                                                <i class="bi bi-check2 me-2 selected-icon"></i>{% endif %} Azərbaycanca</a>
+                                        </li>
                                     {% endif %}
                                     {% if lang.0 == 'tr' %}
                                         <li><a class="dropdown-item"
                                                href="/{{ lang.0 }}/{{ request.get_full_path|slice:'4:' }}">
-                                            {% if LANGUAGE_CODE == 'tr' %}<i class="bi bi-check2 me-2 selected-icon"></i>{% endif %} Türkce</a></li>
+                                            {% if LANGUAGE_CODE == 'tr' %}
+                                                <i class="bi bi-check2 me-2 selected-icon"></i>{% endif %} Türkce</a>
+                                        </li>
                                     {% endif %}
                                 {% endfor %}
                             </ul>
@@ -156,6 +160,28 @@
         </div>
     </div>
 
+    <!-- SIDRA BANNER SECTION -->
+    <!-- SIDRA IMAGE BANNER SECTION -->
+<section class="sidra-banner">
+    <div class="sidra-banner-swiper swiper">
+        <div class="swiper-wrapper">
+
+            {% for banner in banners %}
+            <div class="swiper-slide sidra-banner-slide">
+                <img src="{{ banner.image.url }}" alt="Banner 1">
+            </div>
+            {% endfor %}
+
+        </div>
+
+        <!-- Pagination only (clean look) -->
+        <div class="sidra-banner-pagination"></div>
+    </div>
+</section>
+<!-- END SIDRA IMAGE BANNER SECTION -->
+    <!-- END SIDRA BANNER SECTION -->
+
+
     <!-- Announcement Bar -->
     <div class="announcement-bar py-2">
         <div class="container-fluid container-xl">
@@ -184,7 +210,8 @@
         <div class="container">
             <form class="search-form" action="{% url 'products:list' %}">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="{% trans 'Search for products...' %}" name="search">
+                    <input type="text" class="form-control" placeholder="{% trans 'Search for products...' %}"
+                           name="search">
                     <button class="btn search-btn" type="submit">
                         <i class="bi bi-search"></i>
                     </button>
@@ -204,21 +231,23 @@
             <div class="row gy-4">
                 <div class="col-lg-4 col-md-6">
                     {% if settings %}
-                    <div class="footer-widget footer-about">
-                        <a href="{% url 'mainapp:index' %}" class="logo">
-                            <span class="sitename">Sidra</span>
-                        </a>
-                        <p>{{ settings.short_description }}</p>
+                        <div class="footer-widget footer-about">
+                            <a href="{% url 'mainapp:index' %}" class="logo">
+                                <span class="sitename">Sidra</span>
+                            </a>
+                            <p>{{ settings.short_description }}</p>
 
-                        <div class="social-links mt-4">
-                            <h5>{% trans 'Connect With Us' %}</h5>
-                            <div class="social-icons">
-                                <a href="{{ settings.facebook }}" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-                                <a href="{{ settings.instagram }}" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-                                <a href="{{ settings.tiktok }}" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+                            <div class="social-links mt-4">
+                                <h5>{% trans 'Connect With Us' %}</h5>
+                                <div class="social-icons">
+                                    <a href="{{ settings.facebook }}" aria-label="Facebook"><i
+                                            class="bi bi-facebook"></i></a>
+                                    <a href="{{ settings.instagram }}" aria-label="Instagram"><i
+                                            class="bi bi-instagram"></i></a>
+                                    <a href="{{ settings.tiktok }}" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     {% endif %}
                 </div>
 
@@ -230,29 +259,29 @@
 
                 <div class="col-lg-4 col-md-6">
                     {% if settings %}
-                    <div class="footer-widget">
-                        <h4>{% trans 'Contact Information' %}</h4>
-                        <div class="footer-contact">
-                            <div class="contact-item">
-                                <i class="bi bi-geo-alt"></i>
-                                <span>{{ settings.address }}</span>
+                        <div class="footer-widget">
+                            <h4>{% trans 'Contact Information' %}</h4>
+                            <div class="footer-contact">
+                                <div class="contact-item">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <span>{{ settings.address }}</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="bi bi-telephone"></i>
+                                    <span>{{ settings.phone }}</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="bi bi-envelope"></i>
+                                    <span>{{ settings.email }}</span>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="bi bi-clock"></i>
+                                    {{ settings.working_hours|safe }}
+                                </div>
                             </div>
-                            <div class="contact-item">
-                                <i class="bi bi-telephone"></i>
-                                <span>{{ settings.phone }}</span>
-                            </div>
-                            <div class="contact-item">
-                                <i class="bi bi-envelope"></i>
-                                <span>{{ settings.email }}</span>
-                            </div>
-                            <div class="contact-item">
-                                <i class="bi bi-clock"></i>
-                                {{ settings.working_hours|safe }}
-                            </div>
+
+
                         </div>
-
-
-                    </div>
                     {% endif %}
                 </div>
             </div>

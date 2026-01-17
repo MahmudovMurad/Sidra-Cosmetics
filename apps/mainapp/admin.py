@@ -1,5 +1,5 @@
 from django.contrib import admin
-from apps.mainapp.models import Settings, About
+from apps.mainapp.models import Settings, About, Banner
 
 # Register your models here.
 
@@ -11,4 +11,9 @@ class SettingsAdmin(admin.ModelAdmin):
 
 @admin.register(About)
 class AboutAdmin(admin.ModelAdmin):
+    ...
+
+
+@admin.register(Banner)
+class BannerAdmin(admin.ModelAdmin):
     ...

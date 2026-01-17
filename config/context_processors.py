@@ -1,6 +1,6 @@
 from apps.baskets.models import Basket
 from apps.baskets.helper import get_client_ip
-from apps.mainapp.models import Settings
+from apps.mainapp.models import Settings, Banner
 
 
 def extras(request):
@@ -14,5 +14,6 @@ def extras(request):
     ).first()
     return {
         "cart_count": basket.basketitem_set.count() if basket else 0,
-        "settings": settings
+        "settings": settings,
+        "banners": Banner.objects.all()
     }

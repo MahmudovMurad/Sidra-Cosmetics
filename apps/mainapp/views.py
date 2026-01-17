@@ -19,7 +19,7 @@ def index_view(request):
         "en": ("price", "discount"),  # fallback
     }
     price_field, discount_field = price_field_map.get(lang, ("price", "discount"))
-    products = Product.objects.annotate(
+    products = Product.objects.select_related("category").prefetch_related("productimage").annotate(
         final_price=F(price_field) - Coalesce(F(discount_field), Value(0), output_field=DecimalField())
     ).order_by("-created_at")
 

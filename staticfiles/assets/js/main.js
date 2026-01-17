@@ -979,3 +979,21 @@
   });
 
 })();
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    new Swiper(".sidra-banner-swiper", {
+        loop: true,
+        speed: 900,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        effect: "slide",
+        pagination: {
+            el: ".sidra-banner-pagination",
+            clickable: true,
+        },
+    });
+});
+

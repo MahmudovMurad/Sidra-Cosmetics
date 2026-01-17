@@ -65,3 +65,14 @@ class About(TrackedModelMixin):
             return obj
         except:
             return None
+
+
+
+class Banner(TrackedModelMixin):
+    image = models.ImageField(upload_to="banners/")
+
+    def __str__(self):
+        return self.image.url
+
+    class Meta:
+        verbose_name_plural = "Banners"
