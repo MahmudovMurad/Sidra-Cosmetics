@@ -160,28 +160,6 @@
         </div>
     </div>
 
-    <!-- SIDRA BANNER SECTION -->
-    <!-- SIDRA IMAGE BANNER SECTION -->
-<section class="sidra-banner">
-    <div class="sidra-banner-swiper swiper">
-        <div class="swiper-wrapper">
-
-            {% for banner in banners %}
-            <div class="swiper-slide sidra-banner-slide">
-                <img src="{{ banner.image.url }}" alt="Banner 1">
-            </div>
-            {% endfor %}
-
-        </div>
-
-        <!-- Pagination only (clean look) -->
-        <div class="sidra-banner-pagination"></div>
-    </div>
-</section>
-<!-- END SIDRA IMAGE BANNER SECTION -->
-    <!-- END SIDRA BANNER SECTION -->
-
-
     <!-- Announcement Bar -->
     <div class="announcement-bar py-2">
         <div class="container-fluid container-xl">
@@ -204,6 +182,26 @@
             </div>
         </div>
     </div>
+
+
+    <!-- SIDRA IMAGE BANNER SECTION -->
+<section class="sidra-banner">
+    <div class="sidra-banner-swiper swiper">
+        <div class="swiper-wrapper">
+
+            {% for banner in banners %}
+            <div class="swiper-slide sidra-banner-slide">
+                <img src="{{ banner.image.url }}" alt="Banner 1">
+            </div>
+            {% endfor %}
+
+        </div>
+
+        <!-- Pagination only (clean look) -->
+        <div class="sidra-banner-pagination"></div>
+    </div>
+</section>
+<!-- END SIDRA IMAGE BANNER SECTION -->
 
     <!-- Mobile Search Form -->
     <div class="collapse" id="mobileSearch">
