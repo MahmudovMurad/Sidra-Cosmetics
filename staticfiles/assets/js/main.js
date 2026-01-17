@@ -990,10 +990,17 @@ document.addEventListener("DOMContentLoaded", function () {
             disableOnInteraction: false,
         },
         effect: "slide",
+
+        /* Pagination dots */
         pagination: {
             el: ".sidra-banner-pagination",
-            clickable: true,
+            clickable: true,  // Make dots clickable
+            renderBullet: function (index, className) {
+                // Optional: add numbers inside bullets
+                return '<span class="' + className + '"></span>';
+            },
         },
     });
 });
+
 

@@ -13057,3 +13057,27 @@ section,
         padding-right: 40px;
     }
 }
+
+/* Pagination bullets for Sidra banner */
+.sidra-banner-pagination {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
+
+.sidra-banner-pagination .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.5);
+    margin: 0 5px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: all 0.3s;
+}
+
+.sidra-banner-pagination .swiper-pagination-bullet-active {
+    background: #fff;
+    transform: scale(1.2);
+}
