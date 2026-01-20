@@ -13003,65 +13003,46 @@ section,
 /* ===========================
    SIDRA IMAGE-ONLY BANNER
    =========================== */
-
 .sidra-banner {
     width: 100%;
-    overflow: hidden;
+    display: flex;
+    justify-content: center; /* center the banner */
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
 }
 
-/* Default height */
 .sidra-banner-swiper {
     width: 100%;
-    height: 320px;
+    max-width: 1200px; /* max width on big screens */
+    min-width: 300px;  /* minimum width on small screens */
+    aspect-ratio: 16/6; /* maintain consistent aspect ratio */
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.5s ease;
 }
 
-/* Larger Y-axis on large screens */
-@media (min-width: 1200px) {
-    .sidra-banner-swiper {
-        height: 580px;
-    }
-}
-
+/* Slides */
 .sidra-banner-slide {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
-/* Image behavior */
+/* Image styling */
 .sidra-banner-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: all 0.5s ease;
 }
 
-/* Pagination (minimal) */
-.sidra-banner-pagination {
-    bottom: 18px !important;
-}
-
-.sidra-banner-pagination .swiper-pagination-bullet {
-    background: #fff;
-    opacity: 0.5;
-}
-
-.sidra-banner-pagination .swiper-pagination-bullet-active {
-    opacity: 1;
-}
-
-/* Optional side spacing on ultra-wide screens */
-@media (min-width: 1600px) {
-    .sidra-banner {
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-}
-
-/* Pagination bullets for Sidra banner */
+/* Pagination styling */
 .sidra-banner-pagination {
     position: absolute;
-    bottom: 15px;
+    bottom: 20px;
     width: 100%;
     text-align: center;
     z-index: 10;
@@ -13079,5 +13060,34 @@ section,
 
 .sidra-banner-pagination .swiper-pagination-bullet-active {
     background: #fff;
-    transform: scale(1.2);
+    transform: scale(1.3);
+}
+
+/* Responsive behavior */
+
+/* Small screens */
+@media (max-width: 768px) {
+    .sidra-banner-swiper {
+        max-width: 95%;
+        aspect-ratio: 16/9;
+    }
+    .sidra-banner {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+/* Medium screens */
+@media (min-width: 769px) and (max-width: 1200px) {
+    .sidra-banner-swiper {
+        max-width: 90%;
+        aspect-ratio: 16/6;
+    }
+}
+
+/* Extra large screens */
+@media (min-width: 1600px) {
+    .sidra-banner-swiper {
+        max-width: 1400px;
+    }
 }
