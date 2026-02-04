@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 {% load static %}
 {% load i18n %}
 
@@ -12,7 +12,7 @@
     <meta name="keywords" content="">
 
     <!-- Favicons -->
-    <link href="/staticfiles/assets/logo.png" rel="icon">
+    <link href="/staticfiles/assets/img/sidra_logo.png" rel="icon">
     <link href="/staticfiles/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Fonts -->
@@ -106,8 +106,8 @@
                 <!-- Logo -->
                 <a href="{% url 'mainapp:index' %}" class="logo d-flex align-items-center">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
-                    <!-- <img src="/staticfiles/assets/img/logo.webp" alt=""> -->
-                    <h1 class="sitename">Sidra</h1>
+                     <img src="/staticfiles/assets/img/sidra_logo.png" alt="">
+<!--                    <h1 class="sitename">Sidra</h1>-->
                 </a>
 
                 <!-- Search -->
@@ -231,7 +231,8 @@
                     {% if settings %}
                         <div class="footer-widget footer-about">
                             <a href="{% url 'mainapp:index' %}" class="logo">
-                                <span class="sitename">Sidra</span>
+<!--                                <span class="sitename">Sidra</span>-->
+                                <img src="/staticfiles/assets/img/sidra_logo.png" alt="" style="with: 200px; height: 100px;">
                             </a>
                             <p>{{ settings.short_description }}</p>
 
