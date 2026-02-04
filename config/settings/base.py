@@ -138,6 +138,7 @@ USE_TZ = True
 LANGUAGES = (
     ("az", _("Azerbaijani")),
     ("tr", _("Turkish")),
+    ("en", _("English")),
 )
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = LANGUAGE_CODE
@@ -146,7 +147,7 @@ MODELTRANSLATION_FALLBACK_LANGUAGES = {
 }
 
 gettext = lambda s: s
-MODELTRANSLATION_LANGUAGES = ('az', 'tr')
+MODELTRANSLATION_LANGUAGES = ('az', 'tr', 'en')
 
 LOCALE_PATHS = [
     BASE_DIR / "locale/"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-14 10:14+0400\n"
+"POT-Creation-Date: 2026-02-04 13:05+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,48 +30,93 @@ msgstr "Paşa"
 msgid "Cash on Delivery"
 msgstr "Qapıda Ödəniş"
 
-#: config/settings/base.py:138
+#: apps/orders/choices.py:13
+msgid "AZN"
+msgstr "AZN"
+
+#: apps/orders/choices.py:14
+msgid "TL"
+msgstr "TL"
+
+#: apps/orders/choices.py:18
+msgid "In Progress"
+msgstr "İcra olunur"
+
+#: apps/orders/choices.py:19
+msgid "Failed"
+msgstr "Uğursuz"
+
+#: apps/orders/choices.py:20
+msgid "Canceled"
+msgstr "Ləğv olundu"
+
+#: apps/orders/choices.py:21
+msgid "Error"
+msgstr "Xəta"
+
+#: apps/orders/choices.py:22
+msgid "Success"
+msgstr "Uğurlu"
+
+#: config/settings/base.py:139
 msgid "Azerbaijani"
 msgstr "Azərbaycanca"
 
-#: config/settings/base.py:139
+#: config/settings/base.py:140
 msgid "Turkish"
 msgstr "Türkçə"
 
-#: templates/base.html:120 templates/base.html:195
+#: config/settings/base.py:141
+msgid "English"
+msgstr "İngiliscə"
+
+#: templates/base.html:67 templates/base.html:86
+msgid "Azərbaycanca"
+msgstr "Azərbaycanca"
+
+#: templates/base.html:71 templates/base.html:93
+msgid "Türkce"
+msgstr "Türkçə"
+
+#: templates/base.html:75 templates/base.html:100
+msgid "Ingilizce"
+msgstr "İngiliscə"
+
+#: templates/base.html:127 templates/base.html:222
 #: templates/products/list.html:119
 msgid "Search for products..."
 msgstr "Məhsul axtarın ..."
 
-#: templates/base.html:141 templates/baskets/list.html:15
+#: templates/base.html:148 templates/baskets/list.html:15
 #: templates/baskets/list.html:18
 msgid "Cart"
 msgstr "Səbət"
 
-#: templates/base.html:159 templates/baskets/list.html:14
-#: templates/orders/create.html:14 templates/products/detail.html:14
-#: templates/products/list.html:14
+#: templates/base.html:166 templates/baskets/list.html:14
+#: templates/mainapp/about.html:14 templates/orders/create.html:14
+#: templates/products/detail.html:14 templates/products/list.html:14
 msgid "Home"
 msgstr "Ev"
 
-#: templates/base.html:160
+#: templates/base.html:167 templates/mainapp/about.html:15
+#: templates/mainapp/about.html:18 templates/mainapp/about.html:28
 msgid "About"
 msgstr "Haqqımızda"
 
-#: templates/base.html:161 templates/products/list.html:15
+#: templates/base.html:168 templates/products/list.html:15
 #: templates/products/list.html:18
 msgid "Products"
 msgstr "Məhsullar"
 
-#: templates/base.html:184
+#: templates/base.html:191
 msgid "🚚 Free shipping on orders over $50"
 msgstr "50 azn və üzəri alış-verişdə çatdırılma pulsuzdur"
 
-#: templates/base.html:222
+#: templates/base.html:251
 msgid "Connect With Us"
 msgstr "Bizimlə Əlaqə"
 
-#: templates/base.html:242
+#: templates/base.html:273
 msgid "Contact Information"
 msgstr "Əlaqə Məlumatı"
 
@@ -97,12 +142,13 @@ msgid "Remove"
 msgstr "Sil"
 
 #: templates/baskets/list.html:70 templates/baskets/list.html:89
-#: templates/baskets/list.html:106 templates/mainapp/index.html:48
-#: templates/mainapp/index.html:50 templates/mainapp/index.html:103
-#: templates/orders/create.html:151 templates/orders/create.html:161
-#: templates/products/detail.html:81 templates/products/detail.html:82
-#: templates/products/list.html:73 templates/products/list.html:81
-#: templates/products/list.html:178
+#: templates/baskets/list.html:106 templates/mainapp/index.html:47
+#: templates/mainapp/index.html:49 templates/mainapp/index.html:97
+#: templates/mainapp/index.html:99 templates/orders/create.html:151
+#: templates/orders/create.html:161 templates/products/detail.html:81
+#: templates/products/detail.html:82 templates/products/list.html:54
+#: templates/products/list.html:55 templates/products/list.html:73
+#: templates/products/list.html:81 templates/products/list.html:178
 msgid "$"
 msgstr "₼"
 
@@ -122,16 +168,16 @@ msgstr "Alış-verişə davam et"
 msgid "All"
 msgstr "Hamısı"
 
-#: templates/mainapp/index.html:42 templates/mainapp/index.html:93
+#: templates/mainapp/index.html:41 templates/mainapp/index.html:91
 #: templates/products/detail.html:114 templates/products/list.html:168
 msgid "Add to Cart"
 msgstr "Səbətə əlavə et"
 
-#: templates/mainapp/index.html:62
+#: templates/mainapp/index.html:59
 msgid "View All Products"
 msgstr "Bütün məhsullara bax"
 
-#: templates/mainapp/index.html:74
+#: templates/mainapp/index.html:71
 msgid "Best Sellers"
 msgstr "Ən çox satılanlar"
 

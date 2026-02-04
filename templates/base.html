@@ -64,11 +64,15 @@
                             {{ LANGUAGE_CODE }}
                             {% if LANGUAGE_CODE == 'az' %}
                                 <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                                    <i class="bi bi-translate me-2"></i>Azərbaycanca
+                                    <i class="bi bi-translate me-2"></i> {% trans 'Azərbaycanca' %}
                                 </a>
                             {% elif LANGUAGE_CODE == 'tr' %}
                                 <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                                    <i class="bi bi-translate me-2"></i>Türkce
+                                    <i class="bi bi-translate me-2"></i> {% trans 'Türkce' %}
+                                </a>
+                            {% elif LANGUAGE_CODE == 'en' %}
+                                <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                    <i class="bi bi-translate me-2"></i> {% trans 'Ingilizce' %}
                                 </a>
                             {% endif %}
 
@@ -79,14 +83,21 @@
                                         <li><a class="dropdown-item"
                                                href="/{{ lang.0 }}/{{ request.get_full_path|slice:'4:' }}">
                                             {% if LANGUAGE_CODE == 'az' %}
-                                                <i class="bi bi-check2 me-2 selected-icon"></i>{% endif %} Azərbaycanca</a>
+                                                <i class="bi bi-check2 me-2 selected-icon"></i>{% endif %} {% trans 'Azərbaycanca' %}</a>
                                         </li>
                                     {% endif %}
                                     {% if lang.0 == 'tr' %}
                                         <li><a class="dropdown-item"
                                                href="/{{ lang.0 }}/{{ request.get_full_path|slice:'4:' }}">
                                             {% if LANGUAGE_CODE == 'tr' %}
-                                                <i class="bi bi-check2 me-2 selected-icon"></i>{% endif %} Türkce</a>
+                                                <i class="bi bi-check2 me-2 selected-icon"></i>{% endif %} {% trans 'Türkce' %}</a>
+                                        </li>
+                                    {% endif %}
+                                    {% if lang.0 == 'en' %}
+                                        <li><a class="dropdown-item"
+                                               href="/{{ lang.0 }}/{{ request.get_full_path|slice:'4:' }}">
+                                            {% if LANGUAGE_CODE == 'en' %}
+                                                <i class="bi bi-check2 me-2 selected-icon"></i>{% endif %} {% trans 'Ingilizce' %}</a>
                                         </li>
                                     {% endif %}
                                 {% endfor %}

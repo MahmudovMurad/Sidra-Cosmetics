@@ -12,11 +12,11 @@ msgstr ""
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: tr\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: apps/orders/choices.py:8
 msgid "Akbank"
@@ -24,11 +24,11 @@ msgstr "Akbank"
 
 #: apps/orders/choices.py:9
 msgid "Pasha"
-msgstr "Paşa"
+msgstr "Pasha"
 
 #: apps/orders/choices.py:10 templates/orders/create.html:102
 msgid "Cash on Delivery"
-msgstr "Kapıda Ödeme"
+msgstr "Cash on Delivery"
 
 #: apps/orders/choices.py:13
 msgid "AZN"
@@ -40,106 +40,106 @@ msgstr "TL"
 
 #: apps/orders/choices.py:18
 msgid "In Progress"
-msgstr "Devam Ediyor"
+msgstr "In Progress"
 
 #: apps/orders/choices.py:19
 msgid "Failed"
-msgstr "Başarısız"
+msgstr "Failed"
 
 #: apps/orders/choices.py:20
 msgid "Canceled"
-msgstr "İptal Edildi"
+msgstr "Canceled"
 
 #: apps/orders/choices.py:21
 msgid "Error"
-msgstr "Hata"
+msgstr "Error"
 
 #: apps/orders/choices.py:22
 msgid "Success"
-msgstr "Başarılı"
+msgstr "Success"
 
 #: config/settings/base.py:139
 msgid "Azerbaijani"
-msgstr "Azerbaycan"
+msgstr "Azerbaijani"
 
 #: config/settings/base.py:140
 msgid "Turkish"
-msgstr "Türkçe"
+msgstr "Turkish"
 
 #: config/settings/base.py:141
 msgid "English"
-msgstr "İngilizce"
+msgstr "English"
 
 #: templates/base.html:67 templates/base.html:86
 msgid "Azərbaycanca"
-msgstr "Azerbaycan"
+msgstr "Azərbaycanca"
 
 #: templates/base.html:71 templates/base.html:93
 msgid "Türkce"
-msgstr "Türkçe"
+msgstr "Turkce"
 
 #: templates/base.html:75 templates/base.html:100
 msgid "Ingilizce"
-msgstr "İngilizce"
+msgstr "Ingilizce"
 
 #: templates/base.html:127 templates/base.html:222
 #: templates/products/list.html:119
 msgid "Search for products..."
-msgstr "Ürünlerde ara..."
+msgstr "Search for products..."
 
 #: templates/base.html:148 templates/baskets/list.html:15
 #: templates/baskets/list.html:18
 msgid "Cart"
-msgstr "Sepet"
+msgstr "Cart"
 
 #: templates/base.html:166 templates/baskets/list.html:14
 #: templates/mainapp/about.html:14 templates/orders/create.html:14
 #: templates/products/detail.html:14 templates/products/list.html:14
 msgid "Home"
-msgstr "Ana Sayfa"
+msgstr "Home"
 
 #: templates/base.html:167 templates/mainapp/about.html:15
 #: templates/mainapp/about.html:18 templates/mainapp/about.html:28
 msgid "About"
-msgstr "Hakkında"
+msgstr "About"
 
 #: templates/base.html:168 templates/products/list.html:15
 #: templates/products/list.html:18
 msgid "Products"
-msgstr "Ürünler"
+msgstr "Products"
 
 #: templates/base.html:191
 msgid "🚚 Free shipping on orders over $50"
-msgstr "50 ₺ ve üzeri siparişlerde kargo ücretsiz"
+msgstr "🚚 Free shipping on orders over 50 AZN"
 
 #: templates/base.html:251
 msgid "Connect With Us"
-msgstr "Bizimle İletişime Geçin"
+msgstr "Connect With Us"
 
 #: templates/base.html:273
 msgid "Contact Information"
-msgstr "İletişim Bilgileri"
+msgstr "Contact Information"
 
 #: templates/baskets/list.html:33
 msgid "Product"
-msgstr "Ürün"
+msgstr "Product"
 
 #: templates/baskets/list.html:36
 msgid "Price"
-msgstr "Fiyat"
+msgstr "Price"
 
 #: templates/baskets/list.html:39 templates/products/detail.html:98
 msgid "Quantity"
-msgstr "Adet"
+msgstr "Quantity"
 
 #: templates/baskets/list.html:42 templates/baskets/list.html:104
 #: templates/orders/create.html:160
 msgid "Total"
-msgstr "Toplam"
+msgstr "Total"
 
 #: templates/baskets/list.html:62
 msgid "Remove"
-msgstr "Kaldır"
+msgstr "Remove"
 
 #: templates/baskets/list.html:70 templates/baskets/list.html:89
 #: templates/baskets/list.html:106 templates/mainapp/index.html:47
@@ -150,142 +150,142 @@ msgstr "Kaldır"
 #: templates/products/list.html:55 templates/products/list.html:73
 #: templates/products/list.html:81 templates/products/list.html:178
 msgid "$"
-msgstr "₺"
+msgstr "₼"
 
 #: templates/baskets/list.html:101 templates/orders/create.html:132
 msgid "Order Summary"
-msgstr "Sipariş Özeti"
+msgstr "Order Summary"
 
 #: templates/baskets/list.html:112
 msgid "Proceed to Checkout"
-msgstr "Ödeme Yap"
+msgstr "Proceed to Checkout"
 
 #: templates/baskets/list.html:118
 msgid "Continue Shopping"
-msgstr "Alışverişe Devam Et"
+msgstr "Continue Shopping"
 
 #: templates/mainapp/index.html:19
 msgid "All"
-msgstr "Hepsi"
+msgstr "All"
 
 #: templates/mainapp/index.html:41 templates/mainapp/index.html:91
 #: templates/products/detail.html:114 templates/products/list.html:168
 msgid "Add to Cart"
-msgstr "Sepete Ekle"
+msgstr "Add to Cart"
 
 #: templates/mainapp/index.html:59
 msgid "View All Products"
-msgstr "Tüm Ürünleri Gör"
+msgstr "View All Products"
 
 #: templates/mainapp/index.html:71
 msgid "Best Sellers"
-msgstr "En Çok Satanlar"
+msgstr "Best Sellers"
 
 #: templates/orders/create.html:15 templates/orders/create.html:18
 #: templates/orders/create.html:120
 msgid "Checkout"
-msgstr "Ödeme"
+msgstr "Checkout"
 
 #: templates/orders/create.html:35
 msgid "Customer Information"
-msgstr "Müşteri Bilgileri"
+msgstr "Customer Information"
 
 #: templates/orders/create.html:68
 msgid "First Name"
-msgstr "Ad"
+msgstr "First Name"
 
 #: templates/orders/create.html:70
 msgid "Your First Name"
-msgstr "Adınızı Girin"
+msgstr "Your First Name"
 
 #: templates/orders/create.html:73
 msgid "Last Name"
-msgstr "Soyad"
+msgstr "Last Name"
 
 #: templates/orders/create.html:75
 msgid "Your Last Name"
-msgstr "Soyadınızı Girin"
+msgstr "Your Last Name"
 
 #: templates/orders/create.html:79
 msgid "Email Address"
-msgstr "E-posta Adresi"
+msgstr "Email Address"
 
 #: templates/orders/create.html:81
 msgid "Your Email"
-msgstr "E-postanızı Girin"
+msgstr "Your Email"
 
 #: templates/orders/create.html:84
 msgid "Phone Number"
-msgstr "Telefon Numarası"
+msgstr "Phone Number"
 
 #: templates/orders/create.html:86
 msgid "Your Phone Number"
-msgstr "Telefon Numaranızı Girin"
+msgstr "Your Phone Number"
 
 #: templates/orders/create.html:91
 msgid "Çatdırıma varmı?"
-msgstr "Teslimat Var mı?"
+msgstr "Delivery Available?"
 
 #: templates/orders/create.html:94
 msgid "Address"
-msgstr "Adres"
+msgstr "Address"
 
 #: templates/orders/create.html:96
 msgid "Your address"
-msgstr "Adresiniz"
+msgstr "Your address"
 
 #: templates/orders/create.html:101
 msgid "Payment Choice"
-msgstr "Ödeme Seçimi"
+msgstr "Payment Choice"
 
 #: templates/orders/create.html:105 templates/orders/create.html:108
 msgid "Pay online"
-msgstr "Çevrimiçi Ödeme"
+msgstr "Pay online"
 
 #: templates/products/list.html:32
 msgid "Categories"
-msgstr "Kategoriler"
+msgstr "Categories"
 
 #: templates/products/list.html:49
 msgid "Price Range"
-msgstr "Fiyat Aralığı"
+msgstr "Price Range"
 
 #: templates/products/list.html:91
 msgid "Apply Filter"
-msgstr "Filtreyi Uygula"
+msgstr "Apply Filter"
 
 #: templates/products/list.html:115
 msgid "Search Products"
-msgstr "Ürünlerde Ara"
+msgstr "Search Products"
 
 #: templates/products/list.html:132
 msgid "Sort By"
-msgstr "Sırala"
+msgstr "Sort By"
 
 #: templates/products/list.html:134
 msgid "Featured"
-msgstr "Öne Çıkanlar"
+msgstr "Featured"
 
 #: templates/products/list.html:135
 msgid "Price: Low to High"
-msgstr "Fiyat: Düşükten Yükseğe"
+msgstr "Price: Low to High"
 
 #: templates/products/list.html:136
 msgid "Price: High to Low"
-msgstr "Fiyat: Yüksekten Düşüğe"
+msgstr "Price: High to Low"
 
 #: templates/products/list.html:203
 msgid "Previous page"
-msgstr "Önceki Sayfa"
+msgstr "Previous page"
 
 #: templates/products/list.html:205
 msgid "Previous"
-msgstr "Önceki"
+msgstr "Previous"
 
 #: templates/products/list.html:229
 msgid "Next page"
-msgstr "Sonraki Sayfa"
+msgstr "Next page"
 
 #: templates/products/list.html:230
 msgid "Next"
-msgstr "Sonraki"
+msgstr "Next"
