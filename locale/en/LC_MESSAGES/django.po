@@ -72,11 +72,11 @@ msgstr "English"
 
 #: templates/base.html:67 templates/base.html:86
 msgid "Azərbaycanca"
-msgstr "Azərbaycanca"
+msgstr "Azerbaijani"
 
 #: templates/base.html:71 templates/base.html:93
 msgid "Türkce"
-msgstr "Turkce"
+msgstr "Turkish"
 
 #: templates/base.html:75 templates/base.html:100
 msgid "Ingilizce"
