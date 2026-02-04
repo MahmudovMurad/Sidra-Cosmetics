@@ -80,7 +80,7 @@ msgstr "Turkce"
 
 #: templates/base.html:75 templates/base.html:100
 msgid "Ingilizce"
-msgstr "Ingilizce"
+msgstr "English"
 
 #: templates/base.html:127 templates/base.html:222
 #: templates/products/list.html:119
