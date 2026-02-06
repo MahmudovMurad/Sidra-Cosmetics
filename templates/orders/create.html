@@ -98,15 +98,16 @@
                                 {% endif %}
 
                                 <div class="form-group mt-3">
-                                    <label for="pay_choice">{% trans 'Payment Choice' %}</label><br>
+                                    <label>{% trans 'Payment Choice' %}</label><br>
                                     <input type="radio" name="pay_choice" value="cod"> <label>{% trans 'Cash on Delivery' %}</label><br>
-                                    {% if LANGUAGE_CODE == "az" %}
-                                    <input type="radio" name="pay_choice" value="pasha">
-                                    <label>{% trans 'Pay online' %}</label>
-                                    {% elif LANGUAGE_CODE == "tr" %}
-                                    <input type="radio" name="pay_choice" value="akbank">
-                                    <label>{% trans 'Pay online' %}</label>
-                                    {% endif %}
+                                    <input type="radio" name="pay_choice" value="online"> <label>{% trans 'Online' %}</label>
+<!--                                    {% if LANGUAGE_CODE == "az" %}-->
+<!--                                    <input type="radio" name="pay_choice" value="pasha">-->
+<!--                                    <label>{% trans 'Pay online' %}</label>-->
+<!--                                    {% elif LANGUAGE_CODE == "tr" %}-->
+<!--                                    <input type="radio" name="pay_choice" value="akbank">-->
+<!--                                    <label>{% trans 'Pay online' %}</label>-->
+<!--                                    {% endif %}-->
                                 </div>
 
                                 {% if LANGUAGE_CODE == "tr" %}

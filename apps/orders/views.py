@@ -1,10 +1,12 @@
+import uuid
+
 from django.shortcuts import render, redirect
 from apps.baskets.helper import get_client_ip
 from apps.baskets.models import Basket
 from apps.orders.forms import OrderForm
 from apps.orders.models import OrderItem
 from django.utils import translation
-from apps.payments.akbank import akbank_payment_gateway
+from apps.payments.united import united_payment_gateway
 
 # Create your views here.
 
@@ -48,8 +50,17 @@ def order_create_view(request):
             if obj.pay_choice == "cod":
                 return redirect("/")
 
-            elif obj.pay_choice == "akbank":
-                pay_link = akbank_payment_gateway.create_link(order=obj)
+            elif obj.pay_choice == "online":
+                order_uuid = str(uuid.uuid4())
+                obj.order_uuid = order_uuid
+                obj.save()
+
+                pay_link = united_payment_gateway.checkout(
+                    order=obj,
+                    order_uuid=order_uuid,
+                    amount=obj.total_price,
+                    description=f"Simple Payment | {order_uuid}",
+                )
                 return redirect(pay_link)
 
             elif obj.pay_choice == "pasha":

@@ -53,6 +53,7 @@ LOCAL_APPS = [
     "apps.baskets.apps.BasketsConfig",
     "apps.orders.apps.OrdersConfig",
     "apps.mainapp.apps.MainappConfig",
+    "apps.payments.apps.PaymentsConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -306,5 +307,17 @@ AKBANK: dict[str, Any] = {
         "merchant_id": env.str("AKBANK_MERCHANT_ID"),
         "merchant_key": env.str("AKBANK_MERCHANT_KEY"),
         "merchant_salt": env.str("AKBANK_MERCHANT_SALT")
+    },
+}
+
+UNITED_PAYMENT: dict[str, Any] = {
+    "BACKEND": "apps.payments.united.UnitedPayment",
+    "OPTIONS": {
+        "BASE_URL": env.str("UNITED_BASE_URL"),
+        "LOGIN_EMAIL": env.str("UNITED_LOGIN_EMAIL"),
+        "LOGIN_PASSWORD": env.str("UNITED_LOGIN_PASSWORD"),
+        "SUCCESS_URL": env.str("UNITED_SUCCESS_URL"),
+        "CANCEL_URL": env.str("UNITED_CANCEL_URL"),
+        "DECLINE_URL": env.str("UNITED_DECLINE_URL"),
     },
 }

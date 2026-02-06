@@ -13,13 +13,13 @@ class Order(TrackedModelMixin):
     email = models.EmailField()
     phone = models.CharField(max_length=300)
 
+
     currency = models.CharField(max_length=300, choices=CurrencyChoice.choices, default="azn")
-    transaction = models.CharField(max_length=300, blank=True, null=True)
     status = models.CharField(max_length=300, choices=StatusChoice.choices, default="in_progress")
 
     is_delivery = models.BooleanField(default=False)
     address = models.TextField(blank=True, null=True)
-
+    order_uuid = models.CharField(max_length=120, blank=True, null=True)
     pay_choice = models.CharField(max_length=300, choices=PaymentChoice.choices, default="cod")
 
     is_paid = models.BooleanField(default=False)
