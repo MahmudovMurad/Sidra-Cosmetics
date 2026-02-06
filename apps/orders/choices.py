@@ -7,6 +7,7 @@ class PaymentChoice(models.TextChoices):
 
     AKBANK = "akbank", _("Akbank")
     Pasha = "pasha", _("Pasha")
+    ONLINE = "online", _("Online")
     COD = "cod", _("Cash on Delivery")
 
 class CurrencyChoice(models.TextChoices):
