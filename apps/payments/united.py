@@ -41,7 +41,9 @@ class UnitedPayment:
             "email": self.LOGIN_EMAIL,
             "password": self.LOGIN_PASSWORD,
         }
+        print("=========== Sending Request for get token ===============================")
         response = requests.post(url, headers=headers, json=payload)
+        print("========================= Get token success ==============================")
         return response.json()["token"]
 
     def checkout(
@@ -65,7 +67,9 @@ class UnitedPayment:
             "cancelUrl": self.CANCEL_URL,
             "declineUrl": self.DECLINE_URL,
         }
+        print("=========== Sending Request for checkout ===============================")
         response = requests.post(url, headers=headers, json=payload)
+        print("========================= Get token success ==============================")
 
         pay_url = response.json()["url"]
         transaction_id = response.json()["transactionId"]
@@ -77,6 +81,7 @@ class UnitedPayment:
             amount=amount,
             description=description,
         )
+        print("&&&&&&&&&&&&&&&&&&&& Done! &&&&&&&&&&&&&&&&&&&&&&&&&")
         return pay_url
 
 

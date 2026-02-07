@@ -51,6 +51,7 @@ def order_create_view(request):
                 return redirect("/")
 
             elif obj.pay_choice == "online":
+                print("=========================== Online payment =========================")
                 order_uuid = str(uuid.uuid4())
                 obj.order_uuid = order_uuid
                 obj.save()
