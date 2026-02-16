@@ -13,6 +13,8 @@ class Transaction(TrackedModelMixin):
     description = models.TextField()
     amount = models.DecimalField(max_digits=30, decimal_places=2)
 
+    result_json = models.JSONField(blank=True, null=True)
+
     is_completed = models.BooleanField(default=False)
 
     def __str__(self):

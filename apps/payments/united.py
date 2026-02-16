@@ -1,4 +1,6 @@
 import requests
+import base64
+import json
 from dataclasses import dataclass
 from django.utils.module_loading import import_string
 from django.conf import settings
@@ -14,6 +16,18 @@ class UnitedPayment:
     SUCCESS_URL: str
     CANCEL_URL: str
     DECLINE_URL: str
+
+    def _decode_base64_json(self, data):
+        # 1. Base64 formatından baytlara (bytes) çeviririk
+        decoded_bytes = base64.b64decode(data)
+
+        # 2. Baytları string formatına (utf-8) çeviririk
+        decoded_string = decoded_bytes.decode('utf-8')
+
+        # 3. String-i JSON (dictionary) obyektinə çeviririk
+        json_object = json.loads(decoded_string)
+
+        return json_object
 
     def _prepare_headers(self, token: str | None = None) -> dict:
         header = {
@@ -41,9 +55,7 @@ class UnitedPayment:
             "email": self.LOGIN_EMAIL,
             "password": self.LOGIN_PASSWORD,
         }
-        print("=========== Sending Request for get token ===============================")
         response = requests.post(url, headers=headers, json=payload)
-        print("========================= Get token success ==============================")
         return response.json()["token"]
 
     def checkout(
@@ -67,9 +79,7 @@ class UnitedPayment:
             "cancelUrl": self.CANCEL_URL,
             "declineUrl": self.DECLINE_URL,
         }
-        print("=========== Sending Request for checkout ===============================")
         response = requests.post(url, headers=headers, json=payload)
-        print("========================= Get token success ==============================")
 
         pay_url = response.json()["url"]
         transaction_id = response.json()["transactionId"]
@@ -81,8 +91,38 @@ class UnitedPayment:
             amount=amount,
             description=description,
         )
-        print("&&&&&&&&&&&&&&&&&&&& Done! &&&&&&&&&&&&&&&&&&&&&&&&&")
         return pay_url
+
+    def handle_checkout(
+        self,
+        data: str
+    ):
+        result = self._decode_base64_json(data)
+
+        order_id = result["OrderId"]
+
+        try:
+            transaction = Transaction.objects.get(order_uuid=order_id)
+        except Order.DoesNotExist:
+            return False
+
+        status = result["Status"]
+
+        if status != "APPROVED":
+            return False
+
+        transaction.result_json = result
+        transaction.is_completed = True
+        transaction.save()
+
+        order = transaction.order
+
+        order.is_paid = True
+        order.is_completed = True
+        order.save()
+
+        return True
+
 
 
 united_payment_gateway: UnitedPayment = import_string(settings.UNITED_PAYMENT["BACKEND"])(

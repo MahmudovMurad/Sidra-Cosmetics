@@ -7,7 +7,6 @@ def extras(request):
     ip_address = get_client_ip(request)
 
     settings = Settings.get_solo()
-    print(settings)
 
     basket = Basket.objects.filter(
             is_active=True, user_ip=ip_address
