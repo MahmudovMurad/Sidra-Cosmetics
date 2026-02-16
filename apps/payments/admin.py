@@ -6,4 +6,5 @@ from .models import Transaction
 
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
-    list_display = ('transaction_uuid', 'order_uuid', 'user_ip', "amount", "order")
+    list_display = ('transaction_uuid', 'order_uuid', 'user_ip', "amount", "order", "is_completed")
+    list_filter = ('is_completed',)
