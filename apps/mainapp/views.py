@@ -9,7 +9,9 @@ from django.utils import translation
 
 
 def index_view(request):
-    categories = Category.objects.all()
+    # Optimize categories query
+    categories = Category.objects.only('id', 'name', 'parent_id').order_by('name')[:50]
+    
     lang = translation.get_language()  # e.g. "az", "tr", "en"
 
     # map language codes to model fields
@@ -19,10 +21,15 @@ def index_view(request):
         "en": ("price", "discount"),  # fallback
     }
     price_field, discount_field = price_field_map.get(lang, ("price", "discount"))
-    products = Product.objects.select_related("category").prefetch_related(
+    
+    # Optimize product query - select only needed fields and prefetch images
+    products = Product.objects.select_related("category").only(
+        'id', 'name', 'category__name', 'category__id',
+        price_field, discount_field, 'is_best_seller', 'created_at'
+    ).prefetch_related(
         Prefetch(
             "productimage_set",
-            queryset=ProductImage.objects.only("id", "image", "product_id")
+            queryset=ProductImage.objects.only("id", "image", "product_id").order_by('id')
         )
     ).annotate(
         final_price=F(price_field) - Coalesce(F(discount_field), Value(0), output_field=DecimalField())

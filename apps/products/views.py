@@ -11,7 +11,8 @@ from django.core.paginator import Paginator
 
 
 def product_list_view(request):
-    categories = Category.objects.order_by("-created_at")
+    # Optimize categories query - limit fields and results
+    categories = Category.objects.only('id', 'name', 'parent_id').order_by('name')[:100]
 
     lang = translation.get_language()  # e.g. "az", "tr", "en"
 
@@ -22,10 +23,15 @@ def product_list_view(request):
         "en": ("price", "discount"),  # fallback
     }
     price_field, discount_field = price_field_map.get(lang, ("price", "discount"))
-    products = Product.objects.select_related("category").prefetch_related(
+    
+    # Optimize product query - select only needed fields and prefetch images
+    products = Product.objects.select_related("category").only(
+        'id', 'name', 'category__name', 'category__id',
+        price_field, discount_field, 'is_best_seller', 'created_at'
+    ).prefetch_related(
         Prefetch(
             "productimage_set",
-            queryset=ProductImage.objects.only("id", "image", "product_id")
+            queryset=ProductImage.objects.only("id", "image", "product_id").order_by('id')
         )
     ).annotate(
         final_price=F(price_field) - Coalesce(F(discount_field), Value(0), output_field=DecimalField())
@@ -60,14 +66,19 @@ def product_detail_view(request, id):
         "en": ("price", "discount"),  # fallback
     }
     price_field, discount_field = price_field_map.get(lang, ("price", "discount"))
-    products = Product.objects.select_related("category").prefetch_related(
+    
+    # Optimize product query - select only needed fields and prefetch images
+    products = Product.objects.select_related("category").only(
+        'id', 'name', 'category__name', 'category__id', 'description',
+        price_field, discount_field, 'is_best_seller', 'created_at'
+    ).prefetch_related(
         Prefetch(
             "productimage_set",
-            queryset=ProductImage.objects.only("id", "image", "product_id")
+            queryset=ProductImage.objects.only("id", "image", "product_id").order_by('id')
         )
     ).annotate(
         final_price=F(price_field) - Coalesce(F(discount_field), Value(0), output_field=DecimalField())
-    ).order_by("-created_at")
+    )
 
     product = get_object_or_404(products, id=id)
     context = {

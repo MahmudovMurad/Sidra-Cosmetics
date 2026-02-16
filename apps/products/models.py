@@ -2,6 +2,7 @@ from django.db import models
 from apps.utils.models.mixins import TrackedModelMixin
 from ckeditor.fields import RichTextField
 from mptt.models import MPTTModel, TreeForeignKey
+from django.utils.functional import cached_property
 
 # Create your models here.
 
@@ -20,6 +21,10 @@ class Category(MPTTModel, TrackedModelMixin):
 
     class Meta:
         verbose_name_plural = "Categories"
+        indexes = [
+            models.Index(fields=['-created_at']),
+            models.Index(fields=['name']),
+        ]
 
     class MPTTMeta:
         order_insertion_by = ['name']
@@ -42,14 +47,37 @@ class Product(TrackedModelMixin):
 
     class Meta:
         verbose_name_plural = "Products"
+        indexes = [
+            models.Index(fields=['-created_at']),
+            models.Index(fields=['is_best_seller', '-created_at']),
+            models.Index(fields=['category', '-created_at']),
+        ]
 
-    @property
+    @cached_property
     def first_product_image(self):
-        return self.productimage_set.first().image.url if self.productimage_set.exists() else None
+        """Get first product image using prefetched data to avoid N+1 queries"""
+        # Access prefetched data directly without triggering new queries
+        images = getattr(self, '_prefetched_objects_cache', {}).get('productimage_set')
+        if images is None:
+            # Fallback if not prefetched (shouldn't happen in optimized views)
+            images = list(self.productimage_set.all()[:1])
+        else:
+            images = list(images)
+        return images[0].image.url if images else None
 
-    @property
+    @cached_property
     def second_product_image(self):
-        return self.productimage_set.all()[1].image.url if self.productimage_set.count() > 1 else self.first_product_image
+        """Get second product image using prefetched data to avoid N+1 queries"""
+        # Access prefetched data directly without triggering new queries
+        images = getattr(self, '_prefetched_objects_cache', {}).get('productimage_set')
+        if images is None:
+            # Fallback if not prefetched
+            images = list(self.productimage_set.all()[:2])
+        else:
+            images = list(images)
+        if len(images) > 1:
+            return images[1].image.url
+        return self.first_product_image
 
     @property
     def total_price(self):
@@ -68,3 +96,4 @@ class ProductImage(TrackedModelMixin):
 
     class Meta:
         verbose_name_plural = "Product Images"
+        ordering = ['id']  # Consistent ordering for prefetch
