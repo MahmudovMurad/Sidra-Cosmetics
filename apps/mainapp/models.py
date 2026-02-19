@@ -74,5 +74,11 @@ class Banner(TrackedModelMixin):
     def __str__(self):
         return self.image.url
 
+    def save(self, *args, **kwargs):
+        if self.image and hasattr(self.image, 'read'):
+            from apps.utils.image import compress_image
+            self.image = compress_image(self.image, max_width=1920, quality=85)
+        super().save(*args, **kwargs)
+
     class Meta:
         verbose_name_plural = "Banners"

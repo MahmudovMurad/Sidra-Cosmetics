@@ -94,6 +94,13 @@ class ProductImage(TrackedModelMixin):
     def __repr__(self):
         return f"ProductImage(product={self.product.id})"
 
+    def save(self, *args, **kwargs):
+        # Auto-compress images on upload to prevent 13-17MB PNGs
+        if self.image and hasattr(self.image, 'read'):
+            from apps.utils.image import compress_image
+            self.image = compress_image(self.image)
+        super().save(*args, **kwargs)
+
     class Meta:
         verbose_name_plural = "Product Images"
         ordering = ['id']  # Consistent ordering for prefetch
