@@ -10,7 +10,7 @@
     <section id="product-list" class="product-list section">
 
         <div class="container isotope-layout" data-aos="fade-up" data-aos-delay="100" data-default-filter="*"
-             data-layout="masonry" data-sort="original-order">
+            data-layout="masonry" data-sort="original-order">
 
             <div class="row">
                 <div class="col-12">
@@ -28,35 +28,42 @@
             <div class="row product-container isotope-container" data-aos="fade-up" data-aos-delay="200">
 
 
-                    {% for product in products %}
-                            <!-- Product Item 1 -->
-                            <div class="col-md-6 col-lg-3 product-item isotope-item filter-category-{{ product.category.id }}">
-                                <div class="product-card">
-                                    <div class="product-image">
-                                        <img src="{{ product.first_product_image }}" alt="{{ product.name }}" class="img-fluid main-img" loading="lazy">
-                                        <img src="{{ product.second_product_image }}" alt="{{ product.name }}" class="img-fluid hover-img" loading="lazy">
-                                        <div class="product-overlay">
-                                            <a onclick="addCart('{{ product.id }}')" class="btn-cart"><i class="bi bi-cart-plus"></i> {% trans 'Add to Cart' %}</a>
-                                        </div>
-                                    </div>
-                                    <div class="product-info">
-                                        <h5 class="product-title"><a href="{% url 'products:detail' product.id %}">{{ product.name }}</a></h5>
-                                        <div class="product-price">
-                                            <span class="current-price">{{ product.final_price|stringformat:".2f" }} {% trans '$' %}</span>
+                {% for product in products %}
+                <!-- Product Item 1 -->
+                <div class="col-md-6 col-lg-3 product-item isotope-item filter-category-{{ product.category.id }}">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ product.first_product_image }}" alt="{{ product.name }}"
+                                class="img-fluid main-img" loading="lazy">
+                            <img src="{{ product.second_product_image }}" alt="{{ product.name }}"
+                                class="img-fluid hover-img" loading="lazy">
+                            <div class="product-overlay">
+                                <a onclick="addCart('{{ product.id }}')" class="btn-cart"><i
+                                        class="bi bi-cart-plus"></i> {% trans 'Add to Cart' %}</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h5 class="product-title"><a href="{% url 'products:detail' product.id %}">{{ product.name
+                                    }}</a></h5>
+                            <div class="product-price">
+                                <span class="current-price">{{ product.final_price|stringformat:".2f" }} {% trans '$'
+                                    %}</span>
 
-                                            {% if product.current_discount %}
-                                                <span class="old-price">{{ product.current_price|stringformat:".2f" }} {% trans '$' %}</span>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- End Product Item -->
-                    {% endfor %}
+                                {% if product.current_discount %}
+                                <span class="old-price">{{ product.current_price|stringformat:".2f" }} {% trans '$'
+                                    %}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End Product Item -->
+                {% endfor %}
 
             </div>
 
             <div class="text-center mt-5" data-aos="fade-up">
-                <a href="{% url 'products:list' %}" class="view-all-btn">{% trans 'View All Products' %} <i class="bi bi-arrow-right"></i></a>
+                <a href="{% url 'products:list' %}" class="view-all-btn">{% trans 'View All Products' %} <i
+                        class="bi bi-arrow-right"></i></a>
             </div>
 
         </div>
@@ -72,36 +79,42 @@
         </div><!-- End Section Title -->
 
         <div class="container isotope-layout" data-aos="fade-up" data-aos-delay="100" data-default-filter="*"
-             data-layout="masonry" data-sort="original-order">
+            data-layout="masonry" data-sort="original-order">
 
 
-                <div class="row product-container isotope-container" data-aos="fade-up" data-aos-delay="200">
+            <div class="row product-container isotope-container" data-aos="fade-up" data-aos-delay="200">
 
 
-                    {% for product in best_sellers %}
-                            <!-- Product Item 1 -->
-                            <div class="col-md-6 col-lg-3 product-item isotope-item filter-category-{{ product.category.id }}">
-                                <div class="product-card">
-                                    <div class="product-image">
-                                        <img src="{{ product.first_product_image }}" alt="{{ product.name }}" class="img-fluid main-img" loading="lazy">
-                                        <img src="{{ product.second_product_image }}" alt="{{ product.name }}" class="img-fluid hover-img" loading="lazy">
-                                        <div class="product-overlay">
-                                            <a onclick="addCart('{{ product.id }}')" class="btn-cart"><i class="bi bi-cart-plus"></i> {% trans 'Add to Cart' %}</a>
-                                        </div>
-                                    </div>
-                                    <div class="product-info">
-                                        <h5 class="product-title"><a href="{% url 'products:detail' product.id %}">{{ product.name }}</a></h5>
-                                        <div class="product-price">
-                                            <span class="current-price">{{ product.final_price|stringformat:".2f" }} {% trans '$' %}</span>
+                {% for product in best_sellers %}
+                <!-- Product Item 1 -->
+                <div class="col-md-6 col-lg-3 product-item isotope-item filter-category-{{ product.category.id }}">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="{{ product.first_product_image }}" alt="{{ product.name }}"
+                                class="img-fluid main-img" loading="lazy">
+                            <img src="{{ product.second_product_image }}" alt="{{ product.name }}"
+                                class="img-fluid hover-img" loading="lazy">
+                            <div class="product-overlay">
+                                <a onclick="addCart('{{ product.id }}')" class="btn-cart"><i
+                                        class="bi bi-cart-plus"></i> {% trans 'Add to Cart' %}</a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h5 class="product-title"><a href="{% url 'products:detail' product.id %}">{{ product.name
+                                    }}</a></h5>
+                            <div class="product-price">
+                                <span class="current-price">{{ product.final_price|stringformat:".2f" }} {% trans '$'
+                                    %}</span>
 
-                                            {% if product.current_discount %}
-                                                <span class="old-price">{{ product.current_price|stringformat:".2f" }} {% trans '$' %}</span>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- End Product Item -->
-                    {% endfor %}
+                                {% if product.current_discount %}
+                                <span class="old-price">{{ product.current_price|stringformat:".2f" }} {% trans '$'
+                                    %}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End Product Item -->
+                {% endfor %}
 
             </div>
 
@@ -115,42 +128,42 @@
 {% block footer %}
 
 <script>
-     const add_cart_url = "{% url 'baskets:create' %}";
+    const add_cart_url = "{% url 'baskets:create' %}";
 
-function addCart(productId) {
-    fetch(add_cart_url, {   // change 'create_basket' to your URL name
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRFToken": getCookie("csrftoken")  // Django CSRF protection
-        },
-        body: JSON.stringify({ product_id: productId, quantity: 1 })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert("Product added to basket!");
-        } else {
-            alert("Something went wrong.");
-        }
-    })
-    .catch(error => console.error("Error:", error));
-}
+    function addCart(productId) {
+        fetch(add_cart_url, {   // change 'create_basket' to your URL name
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": getCookie("csrftoken")  // Django CSRF protection
+            },
+            body: JSON.stringify({ product_id: productId, quantity: 1 })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Product added to basket!");
+                } else {
+                    alert("Something went wrong.");
+                }
+            })
+            .catch(error => console.error("Error:", error));
+    }
 
-// helper function to get CSRF token
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== "") {
-        const cookies = document.cookie.split(";");
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            if (cookie.startsWith(name + "=")) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
+    // helper function to get CSRF token
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+            const cookies = document.cookie.split(";");
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.startsWith(name + "=")) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
             }
         }
+        return cookieValue;
     }
-    return cookieValue;
-}
 </script>
 {% endblock %}

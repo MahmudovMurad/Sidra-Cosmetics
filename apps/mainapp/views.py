@@ -38,7 +38,7 @@ def index_view(request):
     context = {
         "categories": categories,
         # 3. Add limits! Don't load the entire database on the home page.
-        "products": base_products.order_by("-created_at")[:20],
+        "products": base_products.order_by("-created_at")[:12],
         "best_sellers": base_products.filter(is_best_seller=True).order_by("-created_at")[:10]
     }
     return render(request, "mainapp/index.html", context)
