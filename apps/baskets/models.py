@@ -6,7 +6,7 @@ from apps.utils.models.mixins import TrackedModelMixin
 
 
 class Basket(TrackedModelMixin):
-    user_ip = models.CharField(max_length=500)
+    user_ip = models.CharField(max_length=500, db_index=True)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -14,6 +14,9 @@ class Basket(TrackedModelMixin):
 
     class Meta:
         verbose_name_plural = "Baskets"
+        indexes = [
+            models.Index(fields=['is_active', 'user_ip']),
+        ]
 
     @property
     def total_price(self):
