@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 {% load static %}
 {% load i18n %}
 
@@ -18,9 +18,8 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Quicksand:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Quicksand:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="/staticfiles/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,148 +38,144 @@
 
 <body>
 
-    <header id="header" class="header position-relative">
-        <!-- Top Bar -->
-        <div class="top-bar py-2 d-none d-lg-block">
-            <div class="container-fluid container-xl">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <div class="d-flex align-items-center">
-                            <div class="top-bar-item me-4">
+<header id="header" class="header position-relative">
+    <!-- Top Bar -->
+    <div class="top-bar py-2 d-none d-lg-block">
+        <div class="container-fluid container-xl">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="d-flex align-items-center">
+                        <div class="top-bar-item me-4">
 
-                            </div>
-                            <div class="top-bar-item">
+                        </div>
+                        <div class="top-bar-item">
 
-                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="col-lg-6">
-                        <div class="d-flex justify-content-end">
-                            <div class="top-bar-item me-4">
+                <div class="col-lg-6">
+                    <div class="d-flex justify-content-end">
+                        <div class="top-bar-item me-4">
 
-                            </div>
+                        </div>
 
-                            <div class="top-bar-item dropdown me-4">
-                                {{ LANGUAGE_CODE }}
-                                {% if LANGUAGE_CODE == 'az' %}
+                        <div class="top-bar-item dropdown me-4">
+                            {{ LANGUAGE_CODE }}
+                            {% if LANGUAGE_CODE == 'az' %}
                                 <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
                                     <i class="bi bi-translate me-2"></i> {% trans 'Azərbaycanca' %}
                                 </a>
-                                {% elif LANGUAGE_CODE == 'tr' %}
+                            {% elif LANGUAGE_CODE == 'tr' %}
                                 <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
                                     <i class="bi bi-translate me-2"></i> {% trans 'Türkce' %}
                                 </a>
-                                {% elif LANGUAGE_CODE == 'en' %}
+                            {% elif LANGUAGE_CODE == 'en' %}
                                 <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
                                     <i class="bi bi-translate me-2"></i> {% trans 'Ingilizce' %}
                                 </a>
-                                {% endif %}
+                            {% endif %}
 
-                                <ul class="dropdown-menu">
+                            <ul class="dropdown-menu">
 
-                                    {% for lang in LANGUAGES %}
+                                {% for lang in LANGUAGES %}
                                     {% if lang.0 == 'az' %}
-                                    <li><a class="dropdown-item"
-                                            href="/{{ lang.0 }}/{{ request.get_full_path|slice:'4:' }}">
+                                        <li><a class="dropdown-item"
+                                               href="/{{ lang.0 }}/{{ request.get_full_path|slice:'4:' }}">
                                             {% if LANGUAGE_CODE == 'az' %}
-                                            <i class="bi bi-check2 me-2 selected-icon"></i>{% endif %} {% trans
-                                            'Azərbaycanca' %}</a>
-                                    </li>
+                                                <i class="bi bi-check2 me-2 selected-icon"></i>{% endif %} {% trans 'Azərbaycanca' %}</a>
+                                        </li>
                                     {% endif %}
                                     {% if lang.0 == 'tr' %}
-                                    <li><a class="dropdown-item"
-                                            href="/{{ lang.0 }}/{{ request.get_full_path|slice:'4:' }}">
+                                        <li><a class="dropdown-item"
+                                               href="/{{ lang.0 }}/{{ request.get_full_path|slice:'4:' }}">
                                             {% if LANGUAGE_CODE == 'tr' %}
-                                            <i class="bi bi-check2 me-2 selected-icon"></i>{% endif %} {% trans 'Türkce'
-                                            %}</a>
-                                    </li>
+                                                <i class="bi bi-check2 me-2 selected-icon"></i>{% endif %} {% trans 'Türkce' %}</a>
+                                        </li>
                                     {% endif %}
                                     {% if lang.0 == 'en' %}
-                                    <li><a class="dropdown-item"
-                                            href="/{{ lang.0 }}/{{ request.get_full_path|slice:'4:' }}">
+                                        <li><a class="dropdown-item"
+                                               href="/{{ lang.0 }}/{{ request.get_full_path|slice:'4:' }}">
                                             {% if LANGUAGE_CODE == 'en' %}
-                                            <i class="bi bi-check2 me-2 selected-icon"></i>{% endif %} {% trans
-                                            'Ingilizce' %}</a>
-                                    </li>
+                                                <i class="bi bi-check2 me-2 selected-icon"></i>{% endif %} {% trans 'Ingilizce' %}</a>
+                                        </li>
                                     {% endif %}
-                                    {% endfor %}
-                                </ul>
-                            </div>
+                                {% endfor %}
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Main Header -->
-        <div class="main-header">
-            <div class="container-fluid container-xl">
-                <div class="d-flex py-3 align-items-center justify-content-between">
+    <!-- Main Header -->
+    <div class="main-header">
+        <div class="container-fluid container-xl">
+            <div class="d-flex py-3 align-items-center justify-content-between">
 
-                    <!-- Logo -->
-                    <a href="{% url 'mainapp:index' %}" class="logo d-flex align-items-center">
-                        <!-- Uncomment the line below if you also wish to use an image logo -->
-                        <img src="/staticfiles/assets/img/sidra_logo.png" alt="">
-                        <!--                    <h1 class="sitename">Sidra</h1>-->
-                    </a>
+                <!-- Logo -->
+                <a href="{% url 'mainapp:index' %}" class="logo d-flex align-items-center">
+                    <!-- Uncomment the line below if you also wish to use an image logo -->
+                     <img src="/staticfiles/assets/img/sidra_logo.png" alt="">
+<!--                    <h1 class="sitename">Sidra</h1>-->
+                </a>
 
-                    <!-- Search -->
-                    <form class="search-form desktop-search-form" action="{% url 'products:list' %}">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="{% trans 'Search for products...' %}"
-                                name="search">
-                            <button class="btn search-btn" type="submit">
-                                <i class="bi bi-search"></i>
-                            </button>
-                        </div>
-                    </form>
-
-                    <!-- Actions -->
-                    <div class="header-actions d-flex align-items-center justify-content-end">
-
-                        <!-- Mobile Search Toggle -->
-                        <button class="header-action-btn mobile-search-toggle d-xl-none" type="button"
-                            data-bs-toggle="collapse" data-bs-target="#mobileSearch" aria-expanded="false"
-                            aria-controls="mobileSearch">
+                <!-- Search -->
+                <form class="search-form desktop-search-form" action="{% url 'products:list' %}">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="{% trans 'Search for products...' %}" name="search">
+                        <button class="btn search-btn" type="submit">
                             <i class="bi bi-search"></i>
                         </button>
-
-                        <!-- Cart -->
-                        <div class="dropdown cart-dropdown">
-                            <a class="header-action-btn" href="{% url 'baskets:list' %}">
-                                <i class="bi bi-cart3"></i>
-                                <span class="action-text d-none d-md-inline-block">{% trans 'Cart' %}</span>
-                                <span class="badge">{{ cart_count }}</span>
-                            </a>
-                        </div>
-
-                        <!-- Mobile Navigation Toggle -->
-                        <i class="mobile-nav-toggle d-xl-none bi bi-list me-0"></i>
-
                     </div>
+                </form>
+
+                <!-- Actions -->
+                <div class="header-actions d-flex align-items-center justify-content-end">
+
+                    <!-- Mobile Search Toggle -->
+                    <button class="header-action-btn mobile-search-toggle d-xl-none" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#mobileSearch" aria-expanded="false"
+                            aria-controls="mobileSearch">
+                        <i class="bi bi-search"></i>
+                    </button>
+
+                    <!-- Cart -->
+                    <div class="dropdown cart-dropdown">
+                        <a class="header-action-btn" href="{% url 'baskets:list' %}">
+                            <i class="bi bi-cart3"></i>
+                            <span class="action-text d-none d-md-inline-block">{% trans 'Cart' %}</span>
+                            <span class="badge">{{ cart_count }}</span>
+                        </a>
+                    </div>
+
+                    <!-- Mobile Navigation Toggle -->
+                    <i class="mobile-nav-toggle d-xl-none bi bi-list me-0"></i>
+
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Navigation -->
-        <div class="header-nav">
-            <div class="container-fluid container-xl position-relative">
-                <nav id="navmenu" class="navmenu">
-                    <ul>
-                        <li><a href="{% url 'mainapp:index' %}" class="active">{% trans 'Home' %}</a></li>
-                        <li><a href="{% url 'mainapp:about' %}">{% trans 'About' %}</a></li>
-                        <li><a href="{% url 'products:list' %}">{% trans 'Products' %}</a></li>
-                    </ul>
-                </nav>
-            </div>
+    <!-- Navigation -->
+    <div class="header-nav">
+        <div class="container-fluid container-xl position-relative">
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="{% url 'mainapp:index' %}" class="active">{% trans 'Home' %}</a></li>
+                    <li><a href="{% url 'mainapp:about' %}">{% trans 'About' %}</a></li>
+                    <li><a href="{% url 'products:list' %}">{% trans 'Products' %}</a></li>
+                </ul>
+            </nav>
         </div>
+    </div>
 
-        <!-- Announcement Bar -->
-        <div class="announcement-bar py-2">
-            <div class="container-fluid container-xl">
-                <div class="announcement-slider swiper init-swiper">
-                    <script type="application/json" class="swiper-config">
+    <!-- Announcement Bar -->
+    <div class="announcement-bar py-2">
+        <div class="container-fluid container-xl">
+            <div class="announcement-slider swiper init-swiper">
+                <script type="application/json" class="swiper-config">
                     {
                         "loop": true,
                         "speed": 600,
@@ -192,64 +187,63 @@
                         "direction": "vertical"
                     }
                 </script>
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">{% trans '🚚 Free shipping on orders over $50' %}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- SIDRA IMAGE BANNER SECTION -->
-        <section class="sidra-banner">
-            <div class="sidra-banner-swiper swiper">
                 <div class="swiper-wrapper">
-
-                    {% for banner in banners %}
-                    <div class="swiper-slide sidra-banner-slide">
-                        <img src="{{ banner.image.url }}" alt="Banner 1">
-                    </div>
-                    {% endfor %}
-
+                    <div class="swiper-slide">{% trans '🚚 Free shipping on orders over $50' %}</div>
                 </div>
-
-                <!-- Pagination only (clean look) -->
-                <div class="sidra-banner-pagination"></div>
-            </div>
-        </section>
-        <!-- END SIDRA IMAGE BANNER SECTION -->
-
-        <!-- Mobile Search Form -->
-        <div class="collapse" id="mobileSearch">
-            <div class="container">
-                <form class="search-form" action="{% url 'products:list' %}">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="{% trans 'Search for products...' %}"
-                            name="search">
-                        <button class="btn search-btn" type="submit">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
-                </form>
             </div>
         </div>
+    </div>
 
-    </header>
 
-    {% block body %}
-    {% endblock %}
+    <!-- SIDRA IMAGE BANNER SECTION -->
+<section class="sidra-banner">
+    <div class="sidra-banner-swiper swiper">
+        <div class="swiper-wrapper">
 
-    <footer id="footer" class="footer light-background">
-        <div class="footer-main">
-            <div class="container">
-                <div class="row gy-4">
-                    <div class="col-lg-4 col-md-6">
-                        {% if settings %}
+            {% for banner in banners %}
+            <div class="swiper-slide sidra-banner-slide">
+                <img src="{{ banner.image.url }}" alt="Banner 1">
+            </div>
+            {% endfor %}
+
+        </div>
+
+        <!-- Pagination only (clean look) -->
+        <div class="sidra-banner-pagination"></div>
+    </div>
+</section>
+<!-- END SIDRA IMAGE BANNER SECTION -->
+
+    <!-- Mobile Search Form -->
+    <div class="collapse" id="mobileSearch">
+        <div class="container">
+            <form class="search-form" action="{% url 'products:list' %}">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="{% trans 'Search for products...' %}"
+                           name="search">
+                    <button class="btn search-btn" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</header>
+
+{% block body %}
+{% endblock %}
+
+<footer id="footer" class="footer light-background">
+    <div class="footer-main">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6">
+                    {% if settings %}
                         <div class="footer-widget footer-about">
                             <a href="{% url 'mainapp:index' %}" class="logo">
-                                <!--                                <span class="sitename">Sidra</span>-->
-                                <img src="/staticfiles/assets/img/sidra_logo.png" alt=""
-                                    style="with: 200px; height: 100px;">
+<!--                                <span class="sitename">Sidra</span>-->
+                                <img src="/staticfiles/assets/img/sidra_logo.png" alt="" style="with: 200px; height: 100px;">
                             </a>
                             <p>{{ settings.short_description }}</p>
 
@@ -264,17 +258,17 @@
                                 </div>
                             </div>
                         </div>
-                        {% endif %}
-                    </div>
+                    {% endif %}
+                </div>
 
-                    <div class="col-lg-2 col-md-6 col-sm-6">
-                    </div>
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                </div>
 
-                    <div class="col-lg-2 col-md-6 col-sm-6">
-                    </div>
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                </div>
 
-                    <div class="col-lg-4 col-md-6">
-                        {% if settings %}
+                <div class="col-lg-4 col-md-6">
+                    {% if settings %}
                         <div class="footer-widget">
                             <h4>{% trans 'Contact Information' %}</h4>
                             <div class="footer-contact">
@@ -298,36 +292,36 @@
 
 
                         </div>
-                        {% endif %}
-                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
 
-    <!-- Preloader -->
-    <div id="preloader"></div>
+<!-- Preloader -->
+<div id="preloader"></div>
 
-    <!-- Vendor JS Files -->
-    <script src="/staticfiles/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/staticfiles/assets/vendor/php-email-form/validate.js" defer></script>
-    <script src="/staticfiles/assets/vendor/swiper/swiper-bundle.min.js" defer></script>
-    <script src="/staticfiles/assets/vendor/aos/aos.js" defer></script>
-    <script src="/staticfiles/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js" defer></script>
-    <script src="/staticfiles/assets/vendor/isotope-layout/isotope.pkgd.min.js" defer></script>
-    <script src="/staticfiles/assets/vendor/glightbox/js/glightbox.min.js" defer></script>
-    <script src="/staticfiles/assets/vendor/drift-zoom/Drift.min.js" defer></script>
-    <script src="/staticfiles/assets/vendor/purecounter/purecounter_vanilla.js" defer></script>
+<!-- Vendor JS Files -->
+<script src="/staticfiles/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/staticfiles/assets/vendor/php-email-form/validate.js" defer></script>
+<script src="/staticfiles/assets/vendor/swiper/swiper-bundle.min.js" defer></script>
+<script src="/staticfiles/assets/vendor/aos/aos.js" defer></script>
+<script src="/staticfiles/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js" defer></script>
+<script src="/staticfiles/assets/vendor/isotope-layout/isotope.pkgd.min.js" defer></script>
+<script src="/staticfiles/assets/vendor/glightbox/js/glightbox.min.js" defer></script>
+<script src="/staticfiles/assets/vendor/drift-zoom/Drift.min.js" defer></script>
+<script src="/staticfiles/assets/vendor/purecounter/purecounter_vanilla.js" defer></script>
 
-    <!-- Main JS File -->
-    <script src="/staticfiles/assets/js/main.js" defer></script>
+<!-- Main JS File -->
+<script src="/staticfiles/assets/js/main.js" defer></script>
 
-    {% block footer %}
-    {% endblock %}
+{% block footer %}
+{% endblock %}
 
 
 </body>
