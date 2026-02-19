@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
+{{ LANGUAGE_CODE }}
 
 {% block body %}
 
@@ -44,9 +45,16 @@
                                     <div class="product-info">
                                         <h5 class="product-title"><a href="{% url 'products:detail' product.id %}">{{ product.name }}</a></h5>
                                         <div class="product-price">
-                                            <span class="current-price">{{ product.final_price|stringformat:".2f" }} {% trans '$' %}</span>
-
-                                            {% if product.discount %}<span class="old-price">{{ product.price|stringformat:".2f" }} {% trans '$' %}</span>{% endif %}
+                                            {% if LANGUAGE_CODE == 'az' %}
+                                                <span class="current-price">{{ product.final_price_az|stringformat:".2f" }} {% trans '$' %}</span>
+                                                {% if product.discount_az %}<span class="old-price">{{ product.price_az|stringformat:".2f" }} {% trans '$' %}</span>{% endif %}
+                                            {% elif LANGUAGE_CODE == 'tr' %}
+                                                <span class="current-price">{{ product.final_price_tr|stringformat:".2f" }} {% trans '$' %}</span>
+                                                {% if product.discount_tr %}<span class="old-price">{{ product.price_tr|stringformat:".2f" }} {% trans '$' %}</span>{% endif %}
+                                            {% elif LANGUAGE_CODE == 'en' %}
+                                                <span class="current-price">{{ product.final_price_en|stringformat:".2f" }} {% trans '$' %}</span>
+                                                {% if product.discount_en %}<span class="old-price">{{ product.price_en|stringformat:".2f" }} {% trans '$' %}</span>{% endif %}
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
@@ -94,9 +102,16 @@
                                     <div class="product-info">
                                         <h5 class="product-title"><a href="{% url 'products:detail' product.id %}">{{ product.name }}</a></h5>
                                         <div class="product-price">
-                                            <span class="current-price">{{ product.final_price|stringformat:".2f" }} {% trans '$' %}</span>
-
-                                            {% if product.discount %}<span class="old-price">{{ product.price|stringformat:".2f" }} {% trans '$' %}</span>{% endif %}
+                                            {% if LANGUAGE_CODE == 'az' %}
+                                                <span class="current-price">{{ product.final_price_az|stringformat:".2f" }} {% trans '$' %}</span>
+                                                {% if product.discount_az %}<span class="old-price">{{ product.price_az|stringformat:".2f" }} {% trans '$' %}</span>{% endif %}
+                                            {% elif LANGUAGE_CODE == 'tr' %}
+                                                <span class="current-price">{{ product.final_price_tr|stringformat:".2f" }} {% trans '$' %}</span>
+                                                {% if product.discount_tr %}<span class="old-price">{{ product.price_tr|stringformat:".2f" }} {% trans '$' %}</span>{% endif %}
+                                            {% elif LANGUAGE_CODE == 'en' %}
+                                                <span class="current-price">{{ product.final_price_en|stringformat:".2f" }} {% trans '$' %}</span>
+                                                {% if product.discount_en %}<span class="old-price">{{ product.price_en|stringformat:".2f" }} {% trans '$' %}</span>{% endif %}
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
