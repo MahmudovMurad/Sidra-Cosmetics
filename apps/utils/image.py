@@ -3,7 +3,7 @@ from PIL import Image as PILImage
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
-def compress_image(image_field, max_width=1200, quality=82):
+def compress_image(image_field, max_width=1200, quality=80):
     """
     Compress and resize an ImageField's file.
     Converts PNGs to WebP for massive size reduction.
