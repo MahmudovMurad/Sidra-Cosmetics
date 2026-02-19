@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load helper %}
-{{ LANGUAGE_CODE }}
 
 {% block body %}
 
@@ -176,13 +175,7 @@
                                                 <a href="{% url 'products:detail' product.id %}">{{ product.name }}</a>
                                             </h3>
                                             <div class="product-price">
-                                                {% if LANGUAGE_CODE == 'az' %}
-                                                <span>{{ product.final_price_az|stringformat:".2f" }} {% trans '$' %}</span>
-                                                {% elif LANGUAGE_CODE == 'tr' %}
-                                                <span>{{ product.final_price_tr|stringformat:".2f" }} {% trans '$' %}</span>
-                                                {% elif LANGUAGE_CODE == 'en' %}
-                                                <span>{{ product.final_price_en|stringformat:".2f" }} {% trans '$' %}</span>
-                                                {% endif %}
+                                                <span>{{ product.final_price|stringformat:".2f" }} {% trans '$' %}</span>
                                             </div>
                                         </div>
                                     </div>

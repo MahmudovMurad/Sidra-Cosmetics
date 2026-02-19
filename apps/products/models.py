@@ -83,18 +83,6 @@ class Product(TrackedModelMixin):
     def total_price(self):
         return (self.price - self.discount) if self.discount else self.price
 
-    @property
-    def final_price_az(self):
-        return (self.price_az + self.discount_az) if self.discount_az else self.price_az
-
-    @property
-    def final_price_tr(self):
-        return (self.price_tr + self.discount_tr) if self.discount_tr else self.price_tr
-
-    @property
-    def final_price_en(self):
-        return (self.price_en + self.discount_en) if self.discount_en else self.price_en
-
 
 class ProductImage(TrackedModelMixin):
     product = models.ForeignKey("products.Product", on_delete=models.CASCADE)

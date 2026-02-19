@@ -14,22 +14,27 @@ def product_list_view(request):
     # Optimize categories query - limit fields and results
     categories = Category.objects.only('id', 'name', 'parent_id').order_by('name')[:100]
 
-    # lang = translation.get_language()  # e.g. "az", "tr", "en"
-    #
-    # # map language codes to model fields
-    # price_field_map = {
-    #     "az": ("price_az", "discount_az"),
-    #     "tr": ("price_tr", "discount_tr"),
-    #     "en": ("price", "discount"),  # fallback
-    # }
-    # price_field, discount_field = price_field_map.get(lang, ("price", "discount"))
+    lang = translation.get_language()  # e.g. "az", "tr", "en"
+
+    # map language codes to model fields
+    price_field_map = {
+        "az": ("price_az", "discount_az"),
+        "tr": ("price_tr", "discount_tr"),
+        "en": ("price", "discount"),  # fallback
+    }
+    price_field, discount_field = price_field_map.get(lang, ("price", "discount"))
     
     # Optimize product query - select only needed fields and prefetch images
     products = Product.objects.select_related("category").only(
         'id', 'name', 'category__name', 'category__id',
-        "price", "price_az", "price_tr", "price_en",
-        "discount", "discount_az", "discount_tr", "discount_en",
-        'is_best_seller', 'created_at'
+        price_field, discount_field, 'is_best_seller', 'created_at'
+    ).prefetch_related(
+        Prefetch(
+            "productimage_set",
+            queryset=ProductImage.objects.only("id", "image", "product_id").order_by('id')
+        )
+    ).annotate(
+        final_price=F(price_field) - Coalesce(F(discount_field), Value(0), output_field=DecimalField())
     ).order_by("-created_at")
 
     filtered_products, search_query_params = filter_products(
@@ -52,30 +57,30 @@ def product_list_view(request):
 
 
 def product_detail_view(request, id):
-    # lang = translation.get_language()  # e.g. "az", "tr", "en"
-    #
-    # # map language codes to model fields
-    # price_field_map = {
-    #     "az": ("price_az", "discount_az"),
-    #     "tr": ("price_tr", "discount_tr"),
-    #     "en": ("price", "discount"),  # fallback
-    # }
-    # price_field, discount_field = price_field_map.get(lang, ("price", "discount"))
-    #
-    # Optimize product query - select only needed fields and prefetch images
-    # products = Product.objects.select_related("category").only(
-    #     'id', 'name', 'category__name', 'category__id', 'description',
-    #     price_field, discount_field, 'is_best_seller', 'created_at'
-    # ).prefetch_related(
-    #     Prefetch(
-    #         "productimage_set",
-    #         queryset=ProductImage.objects.only("id", "image", "product_id").order_by('id')
-    #     )
-    # ).annotate(
-    #     final_price=F(price_field) - Coalesce(F(discount_field), Value(0), output_field=DecimalField())
-    # )
+    lang = translation.get_language()  # e.g. "az", "tr", "en"
 
-    product = get_object_or_404(Product, id=id)
+    # map language codes to model fields
+    price_field_map = {
+        "az": ("price_az", "discount_az"),
+        "tr": ("price_tr", "discount_tr"),
+        "en": ("price", "discount"),  # fallback
+    }
+    price_field, discount_field = price_field_map.get(lang, ("price", "discount"))
+
+    # Optimize product query - select only needed fields and prefetch images
+    products = Product.objects.select_related("category").only(
+        'id', 'name', 'category__name', 'category__id', 'description',
+        price_field, discount_field, 'is_best_seller', 'created_at'
+    ).prefetch_related(
+        Prefetch(
+            "productimage_set",
+            queryset=ProductImage.objects.only("id", "image", "product_id").order_by('id')
+        )
+    ).annotate(
+        final_price=F(price_field) - Coalesce(F(discount_field), Value(0), output_field=DecimalField())
+    )
+
+    product = get_object_or_404(products, id=id)
     context = {
         "product": product
     }
