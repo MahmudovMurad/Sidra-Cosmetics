@@ -32,7 +32,7 @@ def index_view(request):
         # 2. Annotate generic fields so the template doesn't trigger deferred DB lookups
         current_price=F(price_field),
         current_discount=F(discount_field),
-        final_price=F(price_field) - Coalesce(F(discount_field), Value(0), output_field=DecimalField())
+        final_price=F(price_field) - (F(price_field) * Coalesce(F(discount_field), Value(0), output_field=DecimalField())) / 100
     )
 
     context = {

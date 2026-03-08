@@ -81,7 +81,7 @@ class Product(TrackedModelMixin):
 
     @property
     def total_price(self):
-        return (self.price - self.discount) if self.discount else self.price
+        return (self.price - (self.price * self.discount) / 100) if self.discount else self.price
 
 
 class ProductImage(TrackedModelMixin):

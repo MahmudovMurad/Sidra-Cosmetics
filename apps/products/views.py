@@ -34,7 +34,7 @@ def product_list_view(request):
             queryset=ProductImage.objects.only("id", "image", "product_id").order_by('id')
         )
     ).annotate(
-        final_price=F(price_field) - Coalesce(F(discount_field), Value(0), output_field=DecimalField())
+        final_price=F(price_field) - (F(price_field) * Coalesce(F(discount_field), Value(0), output_field=DecimalField())) / 100
     ).order_by("-created_at")
 
     filtered_products, search_query_params = filter_products(
