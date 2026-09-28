@@ -7,9 +7,18 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.i18n import i18n_patterns
+from django.views.generic import TemplateView
+
+# Sitemap: /sitemap.xml (dil prefiksi olmadan)
+urlpatterns = [
+    path(
+        "sitemap.xml",
+        TemplateView.as_view(template_name="sitemap.xml", content_type="application/xml"),
+    ),
+]
 
 # Base urlpatterns
-urlpatterns = i18n_patterns(
+urlpatterns += i18n_patterns(
     path(settings.ADMIN_URL, admin.site.urls),
     path("", include("apps.mainapp.urls")),
     path("products/", include("apps.products.urls")),
